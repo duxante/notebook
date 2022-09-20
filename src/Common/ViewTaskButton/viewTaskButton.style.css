@@ -1,0 +1,19 @@
+.customButton {
+    background-color: white;
+    max-width: 120px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 550;
+    /* text-transform: uppercase; */
+    color: #00548B;
+    padding: 5px 2px;
+    border: 2px solid #00548B;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.customButton:hover {
+    background-color: #F2A18A;
+    color: white;
+    border: 2px solid #F2A18A;
+}

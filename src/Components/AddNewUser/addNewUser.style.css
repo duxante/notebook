@@ -1,0 +1,78 @@
+.addNewUserHolder {
+    margin: 20px auto;
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 0px 50px;
+}
+
+.addNewUserForm {
+    height: 58vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: #dce2e7e6;
+    border-radius: 10px;
+    box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+    flex-wrap: wrap;
+    align-content: stretch;
+    align-items: center;
+}  
+
+.addNewUserDataInput {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    width: 100%;
+    min-height: 15vh;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    height: 49vh;
+}
+
+.addNewUserDataInput label {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    align-items: center;
+    margin: 10px auto;
+    font-size: 18px;
+    max-width: 450px;
+    width: 100%;
+}
+
+.addNewUserDataInput input {
+    max-width: 450px;
+    width: 100%;
+    text-indent: 5px;
+    font-style: italic;
+    padding: 8px 5px;
+    font-size: 15px;
+    font-weight: 500;
+    color: gray;
+    border: 1px solid rgb(197 197 197);
+}
+
+.addNewUser {
+    background-color: #A5C1D3;
+    padding: 10px 0px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    border: none;
+    margin-top: 100px;
+    max-width: 450px;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.addNewUser:hover {
+    background-color: #F2A18A;
+    color: white;
+}
