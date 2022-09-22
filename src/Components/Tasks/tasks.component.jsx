@@ -13,7 +13,7 @@ const Tasks = ({
         image: "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8d29ya3xlbnwwfHwwfHw%3D&w=1000&q=80",
         taskNumber: "Task #1",
         taskName: "Posao",
-        /* taskDescription: "Danas na poslu zaraditi hrpu jebenog novca onako, iz zajebancije." */
+        taskDescription: "Danas na poslu zaraditi hrpu jebenog novca onako, iz zajebancije."
         },
         {
         image: "https://preview.redd.it/bhflqxbwryh91.jpg?width=640&crop=smart&auto=webp&s=09c8a66406de54746621fe4b42623c9316aba9b8",

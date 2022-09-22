@@ -11,7 +11,7 @@ const Sidebar = () => {
                 <div className="personalNotebook">
                     <button className="sidebarButton">    
                     <img src="https://freepikpsd.com/file/2019/10/icone-notebook-png-5-Transparent-Images.png"/>
-                    <h1>Personal Notebook</h1>
+                    <h1>Izmjena</h1>
                     </button>
                 </div>
                 <div class="mobile-sidebar">    
