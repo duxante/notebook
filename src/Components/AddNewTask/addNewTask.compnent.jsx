@@ -24,7 +24,7 @@ const AddNewTask = ({
                     <label>
                         <input placeholder="Task Description" name="taskDescription"/>
                     </label>
-                    <button className="addNewTask">Add New Task</button>
+                    <button className="addNewTask">Add New Task 1</button>
                 </div>
             </div>
         </div>
