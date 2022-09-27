@@ -7,10 +7,9 @@
     justify-content: space-between;
     gap: 20px;
     margin: 40px;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    box-shadow: rgb(0 0 0 / 30%) 0px 19px 38px, rgb(0 0 0 / 22%) 0px 15px 12px;
     height: 100%;
     border-radius: 5px;
-    background-color: darkcyan;
 }
   
 .sidebar img {
@@ -27,34 +26,26 @@
 .sidebar-upper {
     display: flex;
     flex-direction: column;
-    background-color: #00548b;
+    background-color: #3a86ff;
     padding: 25px 9px;
-    align-items: flex-start;
-    gap: 50px;
     border-radius: 10px;
-    color: white;
-    min-height: 75vh;
-    height: 100%;
+    height: 75vh;
     justify-content: space-between;
 }
   
 .mobile-sidebar {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    min-height: 500px;
     height: 100%;
-    max-width: 290px;
     width: 100%;
-    gap: 12px;
-    margin-bottom: 135%;
-}
+    justify-content: flex-start;
+    padding-top: 50px;
+}    
   
 .shortcuts {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 10px;
 }
   
 .sidebar-upper h1 {
@@ -83,13 +74,14 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    border-radius: 5px;
+    background-color: #e85d04;
+    height: 30px;
     align-items: center;
-    border-radius: 10px;
-    background-color: #F2A18A;
 }
   
 .sidebarButton {
-    background-color: #5E6F7B;
+    background-color: #3a86ff;
     border: none;
     cursor: pointer;
     max-width: 290px;
@@ -97,9 +89,8 @@
     display: flex;
     align-items: center;
     gap: 15px;
-    border-radius: 10px;
     color: white;
-}
+}    
   
 .personalNotebook :hover {
     background-color: #A5C1D3;
