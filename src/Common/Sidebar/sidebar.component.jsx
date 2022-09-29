@@ -52,7 +52,7 @@ const Sidebar = () => {
                         </button>
                     </div>
                     <div class="shortcuts">
-                        <button onClick={() => navigate('/mainScreen')} className="sidebarButton">
+                        <button onClick={() => navigate('/notebook')} className="sidebarButton">
                         <img Link to='/' src="https://icons-for-free.com/download-icon-bx+log+out-1325051892133132707_256.ico"/>
                         <h2>Log Out</h2>
                         </button>
