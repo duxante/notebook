@@ -1,20 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Dirt&display=swap');
+
 .mainScreenHolder {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.left {
     background-image: url('https://i.pinimg.com/originals/d8/39/74/d839742a057e1d111d0373fa614de906.jpg');
     background-size: cover;
     background-position: center;
     margin: 0px auto;
     padding: 0px auto;
+    width: 50vw;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
 }
 
-
-.created {
-    max-width: 500px;
-    width: 100%;
+.left p {
+    font-size: 80px;
     color: white;
+    font-weight: bold;
+    text-shadow: 4px 4px 2px rgb(0 0 0 / 60%);
     text-align: center;
 }
+
+.right {
+    display: flex;
+    width: 50vw;
+    justify-content: center;
+    align-items: center;
+    background-color: #ecf0f1;
+}
+
+.welcomeButtons {
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10px;
+    min-height: 25vh;
+    box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
+    background-color: white;
+}
+
+
+.welcomeButtons button {
+    max-width: 250px;
+    width: 100%;
+    background-color: #34495e;
+    border-radius: 30px;
+    padding: 10px 0px;
+    color: white;
+    box-shadow: none;
+    border: none;
+    margin: 10px auto;
+    font-size: 24px;
+}
+
+.welcomeButtons button:hover {
+    background-color: #f1c40f;
+    cursor: pointer;
+    color: black;
+}
+
+.or {
+    margin: 0;
+}
+
+.actionsHolder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+

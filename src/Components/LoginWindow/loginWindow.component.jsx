@@ -57,7 +57,9 @@ const LoginWindow = () => {
             </div>
                 <button className="loginButton" onClick={handleSubmitUserData}>Submit</button>
                 <p className="enjoyLife">enjoy life...</p>
+                <p className="created">&copy; created by <b>Dux</b></p>  
         </div>
+        
     )
 }
 

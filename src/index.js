@@ -15,6 +15,7 @@ import Sidebar from './Common/Sidebar/sidebar.component';
 import Tasks from './Components/Tasks/tasks.component';
 import FinishedTasks from './Components/FinishedTasks/finishedTasks.component';
 import DeletedUsers from './Components/DeletedUsers/deletedUsers.component';
+import LoginWindow from './Components/LoginWindow/loginWindow.component';
 
 
 
@@ -24,13 +25,13 @@ root.render(
       <Routes>
         <Route path='/notebook' element={<App />} />
         <Route path='/users' element={<Users />} />
-        <Route path='/mainScreen' element={<MainScreen />} />
         <Route path='/users' element={<Users />} />
         <Route path='/addNewUser' element={<AddNewUser />} />
         <Route path='/addNewTask' element={<AddNewTask />} />
         <Route path='/tasks' element={<Tasks />} />
         <Route path='/finishedTasks' element={<FinishedTasks />} />
         <Route path='/deletedUsers' element={<DeletedUsers/>} />
+        <Route path='/login' element={<LoginWindow/>} />
       </Routes>
   </BrowserRouter>
 ); 

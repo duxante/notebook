@@ -91,3 +91,10 @@
     font-weight: bold;
     margin: 0px auto;
 }
+
+.created {
+    max-width: 500px;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
