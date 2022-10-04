@@ -27,8 +27,8 @@
     flex-direction: column;
     max-width: 500px;
     width: 100%;
-    min-height: 15vh;
     justify-content: flex-end;
+    margin: 30px auto 0px;
 }
 
 .addUserForm label {
@@ -45,13 +45,14 @@
 .addUserForm input {
     max-width: 450px;
     width: 100%;
-    text-indent: 5px;
+    text-indent: 10px;
     font-style: italic;
-    padding: 8px 5px;
+    padding: 10px 0px;
     font-size: 15px;
     font-weight: 500;
     color: gray;
     border: 1px solid rgb(197 197 197);
+    border-radius: 5px;
 }
 
 .loginHolder button {
@@ -65,7 +66,6 @@
     cursor: pointer;
     color: white;
     border: none;
-    margin-top: 20px;
     max-width: 450px;
     width: 100%;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -80,7 +80,7 @@
     color: #595f63;
     font-style: italic;
     font-weight: 400;
-    margin: 30px auto;
+    margin: 0px auto;
     
 }
 
@@ -105,6 +105,7 @@
 .created {
     max-width: 500px;
     width: 100%;
-    color: white;
+    color: black;
     text-align: center;
+    margin: 0px auto 20px auto;
 }

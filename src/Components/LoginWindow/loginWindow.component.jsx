@@ -49,12 +49,10 @@ const LoginWindow = () => {
                         <input placeholder="Email" onChange={handleChangeUserData} name="email"/>   
                     </label>
                     {isEmailValid ? null : <span className="spanWarning">Email je neispravan, pokušajte ponovo.</span>}
-                    <br/>
                     <label>
                         <input placeholder="Password" onChange={handleChangeUserData}name="password"/>
                     </label>
                     {isPasswordValid ? null : <span className="spanWarning">Password je neispravan, pokušajte ponovo.</span>}
-                    <br/>
                 </div>
                     <button className="loginButton" onClick={handleSubmitUserData}>Submit</button>
                     <p className="enjoyLife">enjoy life...</p>
