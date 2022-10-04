@@ -45,6 +45,11 @@
     min-height: 25vh;
     box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
     background-color: white;
+    padding: 20px 0px;
+}
+
+.welcomeButtons h1 {
+    margin: 0;
 }
 
 
