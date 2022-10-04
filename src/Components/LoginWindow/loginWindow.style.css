@@ -93,13 +93,13 @@
 }
 
 .spanWarning {
-    max-width: 500px;
+    max-width: 450px;
     width: 100%;
     display: flex;
-    justify-content: center;
-    color: coral;
-    font-weight: bold;
+    justify-content: left;
+    color: red;
     margin: 0px auto;
+    font-size: 14px;
 }
 
 .created {
