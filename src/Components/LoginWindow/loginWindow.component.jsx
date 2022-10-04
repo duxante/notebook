@@ -37,27 +37,29 @@ const LoginWindow = () => {
     }
 
     return(
-        <div className={isFormVisible ? "loginHolder" : "none"}>
+        <div className="mainLoginHolder">
+            <div className={isFormVisible ? "loginHolder" : "none"}>
 
-            <MainHeading 
-            mainHeadingTitle="Log in"
-            />
-            
-            <div className="addUserForm">
-                <label>
-                    <input placeholder="Email" onChange={handleChangeUserData} name="email"/>   
-                </label>
-                {isEmailValid ? null : <span className="spanWarning">Email je neispravan, pokušajte ponovo.</span>}
-                <br/>
-                <label>
-                    <input placeholder="Password" onChange={handleChangeUserData}name="password"/>
-                </label>
-                {isPasswordValid ? null : <span className="spanWarning">Password je neispravan, pokušajte ponovo.</span>}
-                <br/>
+                <MainHeading 
+                mainHeadingTitle="Log in"
+                />
+                
+                <div className="addUserForm">
+                    <label>
+                        <input placeholder="Email" onChange={handleChangeUserData} name="email"/>   
+                    </label>
+                    {isEmailValid ? null : <span className="spanWarning">Email je neispravan, pokušajte ponovo.</span>}
+                    <br/>
+                    <label>
+                        <input placeholder="Password" onChange={handleChangeUserData}name="password"/>
+                    </label>
+                    {isPasswordValid ? null : <span className="spanWarning">Password je neispravan, pokušajte ponovo.</span>}
+                    <br/>
+                </div>
+                    <button className="loginButton" onClick={handleSubmitUserData}>Submit</button>
+                    <p className="enjoyLife">enjoy life...</p>
+                    <p className="created">&copy; created by <b>Dux</b></p>  
             </div>
-                <button className="loginButton" onClick={handleSubmitUserData}>Submit</button>
-                <p className="enjoyLife">enjoy life...</p>
-                <p className="created">&copy; created by <b>Dux</b></p>  
         </div>
         
     )

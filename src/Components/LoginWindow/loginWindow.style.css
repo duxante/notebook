@@ -1,3 +1,14 @@
+.mainLoginHolder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://i.pinimg.com/originals/d8/39/74/d839742a057e1d111d0373fa614de906.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+
 .loginHolder {
     max-width: 500px;
     width: 100%;
@@ -6,7 +17,6 @@
     justify-content: center;
     align-items: center;
     background-color: white;
-    margin: 25% auto;
     border-radius: 15px;
     gap: 20px;
     box-shadow: rgb(0 0 0 / 24%) 8px 12px 8px 2px;
@@ -45,7 +55,7 @@
 }
 
 .loginHolder button {
-    background-color: #91B7CE;
+    background-color: #34495e;
     max-width: 180px;
     width: 100%;
     padding: 10px 0px;
