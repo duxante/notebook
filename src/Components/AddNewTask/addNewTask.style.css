@@ -1,12 +1,11 @@
-.addNewTaskHolder {
-    margin: 20px auto;
-    width: 95%;
+.holder-centralni-dio {
+    min-height: 100vh;
     display: flex;
-    /* flex-direction: column; */
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
     gap: 20px;
-    padding: 0px 50px;
+    max-width: 1920px;
+    width: 100%;
 }
 
 .addNewTaskForm {

@@ -1,11 +1,11 @@
-.deletedUsersHolder {
-     margin: 20px auto;
-     width: 95%;
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
-     gap: 20px;
-     padding: 0px 50px;
+.holder-centralni-dio {
+    min-height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 20px;
+    max-width: 1920px;
+    width: 100%;
  }
  
  .deletedUsersDashboard {

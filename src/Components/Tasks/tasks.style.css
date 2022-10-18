@@ -1,10 +1,11 @@
-.tasksHolder {
-    width: 95%;
+.holder-centralni-dio {
+    min-height: 100vh;
     display: flex;
-    align-items: baseline;
+    justify-content: space-between;
+    align-items: stretch;
     gap: 20px;
-    padding: 0px 50px;
-    margin: 20px auto;
+    max-width: 1920px;
+    width: 100%;
 }
 
 .tasksForm {

@@ -7,7 +7,7 @@ const DeletedUsers = ({
     mainHeadingTitle
 }) => {
     return(
-        <div class="deletedUsersHolder">
+        <div class="holder-centralni-dio">
             <Sidebar />
             <div className="deletedUsersDashboard">
                 <div className="onlyForMainHeadingTitle">
