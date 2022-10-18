@@ -26,7 +26,6 @@ root.render(
       <Routes>
         <Route path='/notebook' element={<App />} />
         <Route path='/users' element={<Users />} />
-        <Route path='/users' element={<Users />} />
         <Route path='/addNewUser' element={<AddNewUser />} />
         <Route path='/addNewTask' element={<AddNewTask />} />
         <Route path='/tasks' element={<Tasks />} />
