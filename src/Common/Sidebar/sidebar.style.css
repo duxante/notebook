@@ -6,21 +6,21 @@
     flex-direction: column;
     justify-content: space-between;
     gap: 20px;
-    margin: 40px;
     box-shadow: rgb(0 0 0 / 30%) 0px 19px 38px, rgb(0 0 0 / 22%) 0px 15px 12px;
-    height: 100%;
-    border-radius: 5px;
+    background-color: #34495e;
 }
   
 .sidebar img {
-    height: 50px;
-    width: 50px;
+    max-width: 25px;
+    width: 100%;
     border-radius: 40%;
+    filter: invert();
 }
 
 .sidebar-upper h2 {
     margin: 0;
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: normal;
 }
   
 .sidebar-upper {
@@ -40,6 +40,7 @@
     width: 100%;
     justify-content: flex-start;
     padding-top: 50px;
+    gap: 25px;
 }    
   
 .shortcuts {
@@ -81,7 +82,6 @@
 }
   
 .sidebarButton {
-    background-color: #3a86ff;
     border: none;
     cursor: pointer;
     max-width: 290px;
