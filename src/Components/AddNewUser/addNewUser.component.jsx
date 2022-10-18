@@ -9,7 +9,7 @@ const AddNewUser = ({
     return(
         <div className="holder-centralni-dio">
                 <Sidebar />
-            <div className="addNewUserForm">
+            <div className="usersDashboard">
 
                 <MainHeading
                 mainHeadingTitle="Add New User"

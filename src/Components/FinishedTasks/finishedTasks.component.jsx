@@ -10,7 +10,7 @@ const FinishedTasks = ({
     return(
         <div className="holder-centralni-dio">
         <Sidebar />
-        <div className="finishedTasksForm">
+        <div className="usersDashboard">
             <MainHeading 
             mainHeadingTitle="Finished Tasks"
             />            

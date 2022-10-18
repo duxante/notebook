@@ -76,7 +76,7 @@ const OneTask = ({
     return(
         <div className="holder-centralni-dio">
             <Sidebar />
-            <div className="tasksForm">
+            <div className="usersDashboard">
                 <MainHeading 
                 mainHeadingTitle="Tasks"
                 />            
