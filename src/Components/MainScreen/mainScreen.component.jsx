@@ -21,7 +21,7 @@ const MainScreen = () => {
                     Login
                   </button>
                   <p className="or">OR</p>
-                  <button>
+                  <button onClick={() => navigate('/signUp')}>
                     Sign Up
                   </button>
                 </div>  

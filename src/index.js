@@ -16,6 +16,7 @@ import Tasks from './Components/Tasks/tasks.component';
 import FinishedTasks from './Components/FinishedTasks/finishedTasks.component';
 import DeletedUsers from './Components/DeletedUsers/deletedUsers.component';
 import LoginWindow from './Components/LoginWindow/loginWindow.component';
+import SignUp from './Components/SignUp/signUp.component';
 
 
 
@@ -30,8 +31,9 @@ root.render(
         <Route path='/addNewTask' element={<AddNewTask />} />
         <Route path='/tasks' element={<Tasks />} />
         <Route path='/finishedTasks' element={<FinishedTasks />} />
-        <Route path='/deletedUsers' element={<DeletedUsers/>} />
-        <Route path='/login' element={<LoginWindow/>} />
+        <Route path='/deletedUsers' element={<DeletedUsers />} />
+        <Route path='/login' element={<LoginWindow />} />
+        <Route path='/signUp' element={<SignUp />}/>
       </Routes>
   </BrowserRouter>
 ); 
