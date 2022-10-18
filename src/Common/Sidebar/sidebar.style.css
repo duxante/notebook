@@ -39,8 +39,7 @@
     height: 100%;
     width: 100%;
     justify-content: flex-start;
-    padding-top: 50px;
-    gap: 25px;
+    gap: 20px;
 }    
   
 .shortcuts {
@@ -69,6 +68,12 @@
 .personalNotebook h1 {
     color: white;
 }
+
+.personalNotebook p {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+}
   
 .developedByDux {
     max-width: 280px;
@@ -90,12 +95,16 @@
     align-items: center;
     gap: 15px;
     color: white;
-}    
+    margin-left: 15px;
+}   
+
+.sidebarButton h2 {
+    margin: 0;
+    font-weight: normal;
+    font-size: 16px;
+}
   
 .personalNotebook :hover {
     background-color: #A5C1D3;
 }
   
-.shortcuts :hover {
-    background-color: #A5C1D3;
-}
