@@ -8,9 +8,9 @@ const FinishedTasks = ({
 }) => {
 
     return(
-        <div className="finishedTasksHolder">
+        <div className="holder-centralni-dio">
         <Sidebar />
-        <div className="finishedTasksForm">
+        <div className="usersDashboard">
             <MainHeading 
             mainHeadingTitle="Finished Tasks"
             />            

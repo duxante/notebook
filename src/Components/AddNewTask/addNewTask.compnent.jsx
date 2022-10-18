@@ -6,9 +6,9 @@ const AddNewTask = ({
     mainHeadingTitle,
 }) => {
     return(
-        <div className="addNewTaskHolder">
+        <div className="holder-centralni-dio">
                 <Sidebar />
-            <div className="addNewTaskForm">
+            <div className="usersDashboard">
                 
                 <MainHeading
                 mainHeadingTitle="Add New Task"

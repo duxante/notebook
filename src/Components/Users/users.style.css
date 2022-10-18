@@ -9,8 +9,8 @@
 }
 
 .usersDashboard {
-    max-width: 2000px;
-    height: 58vh;
+    max-width: 1200px;
+    min-height: 70vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -20,6 +20,9 @@
     flex-wrap: wrap;
     align-content: stretch;
     align-items: center;
+    height: fit-content;
+    align-self: center;
+    margin: 0px auto;
 }    
 
 .usersSubtitles {
