@@ -4,9 +4,7 @@ import "./tasks.style.css";
 import ViewTaskButton from "../../Common/ViewTaskButton/viewTaskButton.component";
 
 
-const Tasks = ({
-    mainHeadingTitle,
-}) => {
+const Tasks = () => {
 
     let allTasks = [
         {
@@ -77,9 +75,7 @@ const OneTask = ({
         <div className="holder-centralni-dio">
             <Sidebar />
             <div className="usersDashboard">
-                <MainHeading 
-                mainHeadingTitle="Tasks"
-                />            
+                <MainHeading mainHeadingTitle="Tasks" />            
                 <div className="titleAndTasks">
                     <div className="titleTasksList">
                         <h1>Tasks List</h1>

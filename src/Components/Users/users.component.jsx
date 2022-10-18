@@ -5,18 +5,12 @@ import { useState } from "react";
 import AddNewUser from "../AddNewUser/addNewUser.component";
 import Sidebar from "../../Common/Sidebar/sidebar.component";
 
-const Users = ({
-    mainHeadingTitle
-}) => {
+const Users = () => {
     return(
         <div class="holder-centralni-dio">
             <Sidebar />
             <div className="usersDashboard">
-                <div className="onlyForMainHeadingTitle">
-                    <MainHeading 
-                        mainHeadingTitle="Users"
-                    />
-                </div>
+                    <MainHeading mainHeadingTitle="Users" />
                <div className="usersSubtitles">
                     <h4>PERSON</h4>
                     <h4>FUNCTION</h4>

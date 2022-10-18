@@ -2,17 +2,13 @@ import MainHeading from "../../Common/MainHeading/mainHeading.component";
 import Sidebar from "../../Common/Sidebar/sidebar.component";
 import "./addNewTask.style.css";
 
-const AddNewTask = ({
-    mainHeadingTitle,
-}) => {
+const AddNewTask = () => {
     return(
         <div className="holder-centralni-dio">
                 <Sidebar />
             <div className="usersDashboard">
                 
-                <MainHeading
-                mainHeadingTitle="Add New Task"
-                />
+                <MainHeading mainHeadingTitle="Add New Task" />
 
                 <div className="addNewTaskDataInput">
                     <label>

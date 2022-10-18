@@ -3,17 +3,13 @@ import Sidebar from "../../Common/Sidebar/sidebar.component";
 import MainHeading from "../../Common/MainHeading/mainHeading.component";
 
 
-const FinishedTasks = ({
-    mainHeadingTitle
-}) => {
+const FinishedTasks = () => {
 
     return(
         <div className="holder-centralni-dio">
         <Sidebar />
         <div className="usersDashboard">
-            <MainHeading 
-            mainHeadingTitle="Finished Tasks"
-            />            
+            <MainHeading mainHeadingTitle="Finished Tasks" />            
             <div className="titleAndFinishedTasks">
                 <div className="titleFinishedTasksList">
                     <h1>List of finished tasks</h1>
