@@ -51,17 +51,20 @@
 .addNewTaskDataInput input {
     max-width: 450px;
     width: 100%;
-    text-indent: 5px;
+    text-indent: 10px;
     font-style: italic;
-    padding: 8px 5px;
+    padding: 10px 0px;
     font-size: 15px;
     font-weight: 500;
     color: gray;
     border: 1px solid rgb(197 197 197);
+    border-radius: 5px;
 }
 
 .addNewTask {
-    background-color: #A5C1D3;
+    background-color: #34495e;
+    max-width: 180px;
+    width: 100%;
     padding: 10px 0px;
     border-radius: 5px;
     font-size: 18px;
@@ -69,10 +72,10 @@
     cursor: pointer;
     color: white;
     border: none;
-    margin-top: 100px;
     max-width: 450px;
     width: 100%;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin-top: 20px;
 }
 
 .addNewTask:hover {
