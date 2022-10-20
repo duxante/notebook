@@ -3,17 +3,13 @@ import "./addNewUser.style.css";
 import Sidebar from "../../Common/Sidebar/sidebar.component";
 
 
-const AddNewUser = ({
-    mainHeadingTitle,
-}) => {
+const AddNewUser = () => {
     return(
         <div className="holder-centralni-dio">
                 <Sidebar />
             <div className="usersDashboard">
 
-                <MainHeading
-                mainHeadingTitle="Add New User"
-                />
+                <MainHeading mainHeadingTitle="Add New User" />
 
                 <div className="addNewUserDataInput">
                     <label>
