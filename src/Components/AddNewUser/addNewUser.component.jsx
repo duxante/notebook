@@ -1,6 +1,7 @@
 import MainHeading from "../../Common/MainHeading/mainHeading.component";
 import "./addNewUser.style.css";
 import Sidebar from "../../Common/Sidebar/sidebar.component";
+import Button from "../../Common/ButtonFolder/button.component";
 
 
 const AddNewUser = () => {
@@ -24,7 +25,8 @@ const AddNewUser = () => {
                     <label>
                         <input placeholder="Employed" name="employed"/>
                     </label>
-                    <button className="addNewUser">Add New User</button>
+                    {/* <button className="addNewUser">Add New User</button> */}
+                    <Button buttonText="Add New User" />
                 </div>
             </div>
         </div>

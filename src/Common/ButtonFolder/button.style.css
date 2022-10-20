@@ -1,0 +1,21 @@
+.duxanteButton {
+    background-color: #34495e;
+    max-width: 180px;
+    width: 100%;
+    padding: 10px 0px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    border: none;
+    max-width: 450px;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin-top: 10px;
+}
+
+.duxanteButton:hover {
+    background-color: #4e616d;
+    color: white;
+}
