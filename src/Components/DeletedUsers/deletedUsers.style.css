@@ -23,6 +23,7 @@
     height: fit-content;
     align-self: center;
     margin: 0px auto;
+    min-height: 80vh;
 }     
  
  .deletedUsersSubtitle {
