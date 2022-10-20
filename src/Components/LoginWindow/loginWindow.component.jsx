@@ -1,7 +1,8 @@
 import "./loginWindow.style.css";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import MainHeading from "../../Common/MainHeading/mainHeading.component";
+import Button from "../../Common/ButtonFolder/button.component";
 
 
 const LoginWindow = () => {
@@ -54,7 +55,8 @@ const LoginWindow = () => {
                     </label>
                     {isPasswordValid ? null : <span className="spanWarning">Password je neispravan, pokušajte ponovo.</span>}
                 </div>
-                    <button className="loginButton" onClick={handleSubmitUserData}>Submit</button>
+                    <Button buttonText="Submit" onClick={handleSubmitUserData}/>
+                    <p className="orSignUp">Or <Link to="/signUp"> Sign Up</Link></p>
                     <p className="enjoyLife">enjoy life...</p>
                     <p className="created">&copy; created by <b>Dux</b></p>  
             </div>

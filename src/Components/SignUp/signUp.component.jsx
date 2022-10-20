@@ -1,6 +1,7 @@
 import "./signUp.style.css";
 import MainHeading from "../../Common/MainHeading/mainHeading.component";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import Button from "../../Common/ButtonFolder/button.component";
 
 const SignUp = () => {
     return(
@@ -25,7 +26,9 @@ const SignUp = () => {
                         <input placeholder="Password" />
                     </label>
                 </div>
-                <button className="signUpButton">Submit</button>
+                {/* <button className="signUpButton">Submit</button> */}
+                <Button buttonText="Sign Up"/>
+                <p className="backToLogin">Back To <Link to="/login"> Login</Link></p>
                 <p className="enjoyLife">enjoy life...</p>
                 <p className="created">&copy; created by <b>Dux</b></p>  
             </div>

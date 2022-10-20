@@ -1,3 +1,4 @@
+import Button from "../../Common/ButtonFolder/button.component";
 import MainHeading from "../../Common/MainHeading/mainHeading.component";
 import Sidebar from "../../Common/Sidebar/sidebar.component";
 import "./addNewTask.style.css";
@@ -23,7 +24,7 @@ const AddNewTask = () => {
                     <label>
                         <input placeholder="Task Assigned To" name="taskAssignedTo"/>
                     </label>
-                    <button className="addNewTask">Add New Task</button>
+                    <Button buttonText="Add New Task"/>
                 </div>
             </div>
         </div>
