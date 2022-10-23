@@ -25,7 +25,6 @@ const AddNewUser = () => {
                     <label>
                         <input placeholder="Employed" name="employed"/>
                     </label>
-                    {/* <button className="addNewUser">Add New User</button> */}
                     <Button buttonText="Add New User" />
                 </div>
             </div>
