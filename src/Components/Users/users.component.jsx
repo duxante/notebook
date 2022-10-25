@@ -1,8 +1,4 @@
 import "./users.style.css";
-import { useNavigate } from "react-router-dom";
-import MainHeading from "../../Common/MainHeading/mainHeading.component";
-import { useState } from "react";
-import AddNewUser from "../AddNewUser/addNewUser.component";
 import Sidebar from "../../Common/Sidebar/sidebar.component";
 import Dashboard from "../../Common/DashboardFolder/dashboard.component";
 

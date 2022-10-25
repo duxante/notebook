@@ -1,8 +1,7 @@
-import MainHeading from "../../Common/MainHeading/mainHeading.component";
 import Sidebar from "../../Common/Sidebar/sidebar.component";
 import "./tasks.style.css";
-import ViewTaskButton from "../../Common/ViewTaskButton/viewTaskButton.component";
 import Button from "../../Common/ButtonFolder/button.component";
+import Dashboard from "../../Common/DashboardFolder/dashboard.component";
 
 
 const Tasks = () => {
@@ -73,8 +72,7 @@ const OneTask = ({image, taskNumber, taskName, taskDescription}) => {
     return(
         <div className="holder-centralni-dio">
             <Sidebar />
-            <div className="usersDashboard">
-                <MainHeading mainHeadingTitle="Tasks" />            
+            <Dashboard mainHeadingTitle="Tasks">            
                 <div className="titleAndTasks">
                     <div className="titleTasksList">
                         <h1>Tasks List</h1>
@@ -89,7 +87,7 @@ const OneTask = ({image, taskNumber, taskName, taskDescription}) => {
                         />)}
                     </div>
                 </div>
-            </div>
+            </Dashboard>
         </div>
     )
 }
