@@ -1,8 +1,8 @@
 import "./button.style.css";
 
-const Button = ({buttonText, onClick}) => {
+const Button = ({buttonText, onClick, customClassName}) => {
     return(
-        <button className="duxanteButton" onClick={onClick}>
+        <button className={`duxanteButton ${customClassName ? customClassName : ''}`} onClick={onClick}>
             {buttonText}
         </button>
     )
