@@ -4,21 +4,21 @@ import MainHeading from "../../Common/MainHeading/mainHeading.component";
 import { useState } from "react";
 import AddNewUser from "../AddNewUser/addNewUser.component";
 import Sidebar from "../../Common/Sidebar/sidebar.component";
+import Dashboard from "../../Common/DashboardFolder/dashboard.component";
 
 const Users = () => {
     return(
         <div class="holder-centralni-dio">
             <Sidebar />
-            <div className="usersDashboard">
-                    <MainHeading mainHeadingTitle="Users" />
+            <Dashboard mainHeadingTitle="Users">
                <div className="usersSubtitles">
                     <h4>PERSON</h4>
                     <h4>FUNCTION</h4>
                     <h4>STATUS</h4>
                     <h4>EMPLOYED</h4>
                     <h4>ACTION</h4>
-                </div> 
-            </div>
+                </div>
+            </Dashboard>
         </div>
     )
 }
