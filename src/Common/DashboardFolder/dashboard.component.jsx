@@ -1,10 +1,11 @@
 import MainHeading from "../MainHeading/mainHeading.component";
 import "./dashboard.style.css";
 
-const Dashboard = () => {
+const Dashboard = ({children, mainHeadingTitle}) => {
     return(
         <div className="globalDashboard">
-            <MainHeading />
+            <MainHeading mainHeadingTitle={mainHeadingTitle} />
+            {children}
         </div>
     )
 }
