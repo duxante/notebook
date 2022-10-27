@@ -1,10 +1,31 @@
+import React, { useState, useEffect } from "react";
 import "./users.style.css";
 import Sidebar from "../../Common/Sidebar/sidebar.component";
 import Dashboard from "../../Common/DashboardFolder/dashboard.component";
+import fire from "../../Utils/firebase.config";
+
 
 const Users = () => {
+    const [users, setUsers] = useState([]);
+
+    const fetchUsers = async () => {
+        const db = fire.firestore();
+        const response = db.collection("users");
+        const data = await response.get();
+        const newUsers = data.docs.map((user) => {
+          return user.data();
+        });
+        setUsers([...newUsers]);
+      };
+
+    useEffect(() => {
+        fetchUsers();
+      }, []);
+    
+    console.log(users,'svi korisnici');
+      
     return(
-        <div class="holder-centralni-dio">
+        <div className="holder-centralni-dio">
             <Sidebar />
             <Dashboard mainHeadingTitle="Users">
                <div className="usersSubtitles">
