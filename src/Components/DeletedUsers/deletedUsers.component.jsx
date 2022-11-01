@@ -5,7 +5,7 @@ import Dashboard from "../../Common/DashboardFolder/dashboard.component";
 
 const DeletedUsers = () => {
     return(
-        <div class="holder-centralni-dio">
+        <div className="holder-centralni-dio">
             <Sidebar />
             <Dashboard mainHeadingTitle="Deleted Users">
                 <div className="deletedUsersSubtitle">
