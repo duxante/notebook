@@ -5,6 +5,7 @@ import Dashboard from "../../Common/DashboardFolder/dashboard.component";
 import fire from "../../Utils/firebase.config";
 
 
+
 const Users = () => {
     const [users, setUsers] = useState([]);
 
@@ -29,12 +30,23 @@ const Users = () => {
             <Sidebar />
             <Dashboard mainHeadingTitle="Users">
                <div className="usersSubtitles">
-                    <h4>PERSON</h4>
-                    <h4>FUNCTION</h4>
-                    <h4>STATUS</h4>
+                    <h4>NAME</h4>
+                    <h4>POSITION</h4>
                     <h4>EMPLOYED</h4>
+                    <h4>STATUS</h4>
                     <h4>ACTION</h4>
                 </div>
+                {users.map((user) => {
+                  return(
+                    <div className="user">
+                    <p className="userParagraph">{user.name}</p>
+                    <p className="userParagraph">{user.position}</p>
+                    <p className="userParagraph">{user.employed}</p>
+                    <p className="userParagraph">{user.status}</p>
+                    <button>Edit</button>
+                    </div>
+                  )
+                })}
             </Dashboard>
         </div>
     )

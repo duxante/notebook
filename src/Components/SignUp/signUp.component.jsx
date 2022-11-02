@@ -1,6 +1,7 @@
 import "./signUp.style.css";
 import MainHeading from "../../Common/MainHeading/mainHeading.component";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Button from "../../Common/ButtonFolder/button.component";
 
 const SignUp = () => {
