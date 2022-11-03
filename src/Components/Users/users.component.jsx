@@ -36,14 +36,14 @@ const Users = () => {
                     <h4>STATUS</h4>
                     <h4>ACTION</h4>
                 </div>
-                {users.map((user) => {
+                {users.map((user, index) => {
                   return(
-                    <div className="user">
-                    <p className="userParagraph">{user.name}</p>
-                    <p className="userParagraph">{user.position}</p>
-                    <p className="userParagraph">{user.employed}</p>
-                    <p className="userParagraph">{user.status}</p>
-                    <button>Edit</button>
+                    <div key={index} className="user">
+                    <p key={Math.random()} className="userParagraph">{user.name}</p>
+                    <p key={Math.random()} className="userParagraph">{user.position}</p>
+                    <p key={Math.random()} className="userParagraph">{user.employed}</p>
+                    <p key={Math.random()} className="userParagraph">{user.status}</p>
+                    <button key={Math.random()}>Edit</button>
                     </div>
                   )
                 })}

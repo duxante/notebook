@@ -41,16 +41,18 @@
 .user {
     display: flex;
     max-width: 2560px;
-    width: 100%;
+    width: 98%;
     justify-content: space-between;
     align-items: stretch;
     align-content: stretch;
     background-color: white;
-    margin: 10px auto;
+    margin: 10px auto 5px;
+    padding: 3px 0px;
+    border-radius: 5px;
 }
 
 .user button {
-    max-width: 200px;
+    max-width: 185px;
     width: 100%;
     text-align: center;
     margin: 5px;
@@ -61,6 +63,7 @@
     color: white;
     border: none;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 5px 0px;
 }
 
 .user button:hover {
@@ -69,6 +72,9 @@
 }
 
 .userParagraph {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     max-width: 200px;
     width: 100%;
     text-align: center;
