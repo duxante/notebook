@@ -8,10 +8,8 @@ import {
 import './index.css';
 import App from './App';
 import Users from './Components/Users/users.component';
-import MainScreen from './Components/MainScreen/mainScreen.component';
 import AddNewUser from './Components/AddNewUser/addNewUser.component';
 import AddNewTask from './Components/AddNewTask/addNewTask.compnent';
-import Sidebar from './Common/Sidebar/sidebar.component';
 import Tasks from './Components/Tasks/tasks.component';
 import FinishedTasks from './Components/FinishedTasks/finishedTasks.component';
 import DeletedUsers from './Components/DeletedUsers/deletedUsers.component';
