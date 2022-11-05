@@ -43,7 +43,7 @@ const Users = () => {
                     <p key={Math.random()} className="userParagraph">{user.position}</p>
                     <p key={Math.random()} className="userParagraph">{user.employed}</p>
                     <p key={Math.random()} className="userParagraph">{user.status}</p>
-                    <button key={Math.random()}>Edit</button>
+                    <button key={Math.random()}>Delete</button>
                     </div>
                   )
                 })}

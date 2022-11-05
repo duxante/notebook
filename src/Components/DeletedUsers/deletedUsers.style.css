@@ -9,13 +9,13 @@
  } 
  
  .deletedUsersSubtitle {
-     display: flex;
-     width: 100%;
-     border-bottom: 1px solid #8080807a;
-     justify-content: space-between;
-     align-items: flex-end;
-     padding-bottom: 10px;
-     margin-top: 20px;
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid #8080807a;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 10px;
+    margin-top: 20px;
  }
  
  .deletedUsersSubtitle h4 {
@@ -38,4 +38,46 @@
      margin: -20px auto;
  }
  
+ .deletedUser {
+    display: flex;
+    max-width: 2560px;
+    width: 98%;
+    justify-content: space-between;
+    align-items: stretch;
+    align-content: stretch;
+    background-color: white;
+    margin: 10px auto 5px;
+    padding: 3px 0px;
+    border-radius: 5px;
+}
+
+.deletedUser button {
+    max-width: 185px;
+    width: 100%;
+    text-align: center;
+    margin: 5px;
+    background-color: #34495e;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    color: white;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 5px 0px;
+}
+
+.deletedUser button:hover {
+    background-color: #4e616d;
+    color: white;
+}
+
+.deletedUserParagraph {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 200px;
+    width: 100%;
+    text-align: center;
+    margin: 5px;
+}
  
