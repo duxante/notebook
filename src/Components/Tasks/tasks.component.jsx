@@ -57,17 +57,20 @@ const Tasks = () => {
         },
 ];
 
-const OneTask = ({image, taskNumber, taskName, taskDescription}) => {
-    return(
-        <div className="taskCard">
-            <img src={image}/>
-            <h3 className="taskNumber">{taskNumber}</h3>
-            <h2 className="taskName">{taskName}</h2>
-            <p className="taskDescription">{taskDescription}</p>
-            <Button buttonText="View Task" customClassName='customStyle' />
-        </div>
-    )
-}
+    const OneTask = ({image, taskNumber, taskName, taskDescription}) => {
+        return(
+            <div className="taskCard">
+                <img src={image}/>
+                <h3 className="taskNumber">{taskNumber}</h3>
+                <h2 className="taskName">{taskName}</h2>
+                <p className="taskDescription">{taskDescription}</p>
+                <Button buttonText="View Task" customClassName='customStyle' />
+            </div>
+        )
+    }
+
+    /* const fetchUsers = async */
+
 
     return(
         <div className="holder-centralni-dio">

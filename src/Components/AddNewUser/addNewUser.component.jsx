@@ -45,7 +45,7 @@ const AddNewUser = () => {
             <Dashboard mainHeadingTitle="Add New User">
 
                 <div className="addNewUserDataInput">
-                    <form>
+                    <form className="addNewUserForm">
                         <input value={user.name} placeholder="Name" name="name" onChange={addUser}/>
                 
                     

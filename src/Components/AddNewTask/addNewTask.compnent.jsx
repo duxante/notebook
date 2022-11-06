@@ -1,28 +1,60 @@
+import { useState } from "react";
+import fire from "../../Utils/firebase.config";
 import Button from "../../Common/ButtonFolder/button.component";
 import Dashboard from "../../Common/DashboardFolder/dashboard.component";
 import Sidebar from "../../Common/Sidebar/sidebar.component";
 import "./addNewTask.style.css";
 
+
 const AddNewTask = () => {
+    const [task, setTask] = useState({
+        taskImage:"",
+        taskPriority:"",
+        taskName:"",
+        taskDescription:"",
+    });
+
+    const addTask = (e) => {
+        e.preventDefault();
+        setTask({
+            ...task,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const handleSubmitTask = (e) => {
+        e.preventDefault();
+        const db = fire.firestore();
+        db.collection("tasks/").add({
+            taskImage: task.taskImage,
+            taskPriority: task.taskPriority,
+            taskName: task.taskName,
+            taskDescription: task.taskDescription,
+        });
+        setTask({
+        taskImage:"",
+        taskPriority:"",
+        taskName:"",
+        taskDescription:"",
+        })
+    };
+
     return(
         <div className="holder-centralni-dio">
                 <Sidebar />
             <Dashboard mainHeadingTitle="Add New Task">
 
                 <div className="addNewTaskDataInput">
-                    <label>
-                        <input placeholder="Task Name" name="taskName"/>
-                    </label>
-                    <label>
-                        <input placeholder="Task Priority" name="taskPriority"/>
-                    </label>
-                    <label>
-                        <input placeholder="Task Description" name="taskDescription"/>
-                    </label>
-                    <label>
-                        <input placeholder="Task Assigned To" name="taskAssignedTo"/>
-                    </label>
-                    <Button buttonText="Add New Task"/>
+                    <form className="addNewTaskForm">
+                        <input value={task.taskImage} placeholder="Task Image" name="taskImage" onChange={addTask}/>
+                    
+                        <input value={task.taskPriority} placeholder="Task Priority" name="taskPriority" onChange={addTask}/>
+                    
+                        <input value={task.taskName} placeholder="Task Name" name="taskName" onChange={addTask}/>
+                    
+                        <input value={task.taskDescription} placeholder="Task Description" name="taskDescription" onChange={addTask}/>
+                    </form>
+                    <Button buttonText="Add New Task" onClick={handleSubmitTask}/>
                 </div>
             </Dashboard>
         </div>
