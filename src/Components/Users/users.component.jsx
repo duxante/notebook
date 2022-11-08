@@ -20,7 +20,7 @@ const Users = () => {
       };
 
     useEffect(() => {
-        fetchUsers();
+        fetchUsers()
       }, []);
     
     console.log(users,'svi korisnici');
