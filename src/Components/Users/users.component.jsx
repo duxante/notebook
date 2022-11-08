@@ -9,7 +9,7 @@ import fire from "../../Utils/firebase.config";
 const Users = () => {
     const [users, setUsers] = useState([]);
 
-    const fetchUsers = async () => {
+    const fetchUsers = async() => {
         const db = fire.firestore();
         const response = db.collection("users");
         const data = await response.get();
@@ -43,7 +43,7 @@ const Users = () => {
                     <p key={Math.random()} className="userParagraph">{user.position}</p>
                     <p key={Math.random()} className="userParagraph">{user.employed}</p>
                     <p key={Math.random()} className="userParagraph">{user.status}</p>
-                    <button key={Math.random()}>Edit</button>
+                    <button key={Math.random()}>Delete</button>
                     </div>
                   )
                 })}
