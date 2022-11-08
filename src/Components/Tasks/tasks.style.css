@@ -55,6 +55,43 @@
     border-top-right-radius: 10px;
 }
 
+.taskPriority {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 9px 10px auto;
+}
+
+.priorityLow {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 9px 10px auto;
+    background-color: #0096c7;
+    width: 100%;
+    border-radius: 3px;
+    text-indent: 5px;
+    font-weight: 500;
+}
+
+.priorityHigh {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 9px 10px auto;
+    background-color: #e63946;
+    width: 100%;
+    border-radius: 3px;
+    text-indent: 5px;
+    font-weight: 500;
+}
+
 .taskNumber {
     color: grey;
     margin-bottom: 0px;
