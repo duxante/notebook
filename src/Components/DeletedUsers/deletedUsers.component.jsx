@@ -40,7 +40,6 @@ const DeletedUsers = () => {
                     <div key={index} className="deletedUser">
                         <p key={Math.random()} className="deletedUserParagraph">{deletedUser.name}</p>
                         <p key={Math.random()} className="deletedUserParagraph">{deletedUser.position}</p>
-                        <p key={Math.random()} className="deletedUserParagraph">{deletedUser.employed}</p>
                         <p key={Math.random()} className="deletedUserParagraph">{deletedUser.status}</p>
                         <button key={Math.random()}>Reactivate</button>
                     </div>
