@@ -13,9 +13,15 @@ const Tasks = () => {
         return(
             <div className="taskCard">
                 <img src={image.length !==0 ? image : defaultImage}/>
-                <h3 className="taskPriority">{taskPriority === "low" ? <div className="priorityLow">Low</div> : <div className="priorityHigh">High</div>}</h3>
+
+                {/* <h3 className="taskPriority">{taskPriority === "low" ? <div className="priorityLow">Low</div> : <div className="priorityHigh">High</div>}</h3> */}
+
+                <span className={taskPriority === "low" ? "priorityLow" : "priorityHigh"}>{taskPriority}</span>
+
+                <div className="nameAndDescription">
                 <h2 className="taskName">{taskName}</h2>
                 <p className="taskDescription">{taskDescription}</p>
+                </div>
                 <Button buttonText="View Task" customClassName='customStyle' />
             </div>
         )
