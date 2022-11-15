@@ -1,23 +1,19 @@
 .globalDashboard {
-    max-width: 1200px;
-    min-height: 820px;
-    width: 100%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     background-color: #dce2e7e6;
     border-radius: 10px;
     box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
-    flex-wrap: wrap;
-    align-content: stretch;
     align-items: center;
-    height: fit-content;
+    height: 85vh;
     align-self: center;
     margin: 0px auto;
 } 
 
 @media screen and (min-width: 1920px) {
     .globalDashboard{
-        min-height: 1200px;
-        max-width: 2560px;
+        /* min-height: 1200px;
+        max-width: 2560px; */
     }
 }
