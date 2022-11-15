@@ -28,11 +28,6 @@ const DeletedUsers = () => {
                 employed: deletedUserData.employed,
                 id: deletedUser.id,
             }
-            setNotificationConfig({
-                visible: true,
-                severity: "success",
-                text: "User successfully reactivated!",
-            })
             return singleDeletedUser;
         });
         setDeletedUsers([...newDeletedUsers]);
@@ -54,6 +49,11 @@ const DeletedUsers = () => {
         });
         await db.collection("deletedUsers").doc(reactivatedUser.id).delete();
         fetchDeletedUsers();
+        setNotificationConfig({
+            visible: true,
+            severity: "success",
+            text: "User successfully reactivated!",
+        })
     }
 
 

@@ -28,17 +28,12 @@ const Users = () => {
             status: userData.status,
             id: user.id,
           }
-          setNotificationConfig({
-            visible: true,
-            severity: "info",
-            text: "User sucssesfully deleted!",
-        })
           return singleUserData;
         });
         setUsers([...newUsers]);
       };
 
-    useEffect(() => {
+      useEffect(() => {
         fetchUsers()
       }, []);
 
@@ -53,6 +48,11 @@ const Users = () => {
       });
       await db.collection("users").doc(user.id).delete();
       fetchUsers();
+      setNotificationConfig({
+        visible: true,
+        severity: "error",
+        text: "User sucssesfully deleted!",
+    })
     }
 
     
