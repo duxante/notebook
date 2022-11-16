@@ -17,10 +17,10 @@ const FinishedTasks = () => {
         const newFinishedTasks = data.docs.map((finishedTask) => {
             const finishedTaskData = finishedTask.data();
             const singleFinishedTask = {
-                description: finishedTaskData.description,
-                name: finishedTaskData.name,
-                priority: finishedTaskData.priority,
-                image: finishedTaskData.image,
+                description: finishedTaskData.finishedTaskDescription,
+                name: finishedTaskData.finishedTaskName,
+                priority: finishedTaskData.finishedTaskPriority,
+                image: finishedTaskData.finishedTaskImage,
                 id: finishedTaskData.id,
             }
             return singleFinishedTask;
