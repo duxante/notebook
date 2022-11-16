@@ -5,6 +5,9 @@ import Dashboard from "../../Common/DashboardFolder/dashboard.component";
 import { useEffect, useState } from "react";
 import fire from "../../Utils/firebase.config";
 import defaultImage from "../../imagesFolder/defaultImage.svg";
+import HolderCentralniDio from "../../Common/HolderCentralniDio/holderCentralniDio.component";
+
+
 
 const Tasks = () => {
     const [allTasks, setAllTasks] = useState([]);
@@ -42,7 +45,7 @@ const Tasks = () => {
     }, []);
 
     return(
-        <div className="holder-centralni-dio">
+        <HolderCentralniDio>
             <Sidebar />
             <Dashboard mainHeadingTitle="Tasks">            
                 <div className="titleAndTasks">
@@ -60,7 +63,7 @@ const Tasks = () => {
                     </div>
                 </div>
             </Dashboard>
-        </div>
+        </HolderCentralniDio>
     )
 }
 

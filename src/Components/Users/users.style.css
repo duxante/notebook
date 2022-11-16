@@ -1,13 +1,3 @@
-.holder-centralni-dio {
-    min-height: 100vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    gap: 20px;
-    max-width: 1920px;
-    width: 100%;
-}
-
 .usersSubtitles {
     display: flex;
     width: 100%;

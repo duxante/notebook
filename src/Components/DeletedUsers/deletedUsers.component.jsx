@@ -4,6 +4,7 @@ import Dashboard from "../../Common/DashboardFolder/dashboard.component";
 import { useState, useEffect } from "react";
 import fire from "../../Utils/firebase.config";
 import Notification from "../../Common/NotificationFolder/notification.component";
+import HolderCentralniDio from "../../Common/HolderCentralniDio/holderCentralniDio.component";
 
 
 const DeletedUsers = () => {
@@ -69,7 +70,7 @@ const DeletedUsers = () => {
         />
         }
 
-        <div className="holder-centralni-dio">
+        <HolderCentralniDio>
             <Sidebar />
             <Dashboard mainHeadingTitle="Deleted Users">
                 <div className="deletedUsersSubtitle">
@@ -91,7 +92,7 @@ const DeletedUsers = () => {
                     )
                 })} 
             </Dashboard>
-        </div>
+        </HolderCentralniDio>
         </>
     )
 }

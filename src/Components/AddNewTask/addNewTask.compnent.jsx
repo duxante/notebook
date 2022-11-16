@@ -4,6 +4,9 @@ import Button from "../../Common/ButtonFolder/button.component";
 import Dashboard from "../../Common/DashboardFolder/dashboard.component";
 import Sidebar from "../../Common/Sidebar/sidebar.component";
 import "./addNewTask.style.css";
+import Notification from "../../Common/NotificationFolder/notification.component";
+import HolderCentralniDio from "../../Common/HolderCentralniDio/holderCentralniDio.component";
+
 
 
 const AddNewTask = () => {
@@ -13,6 +16,11 @@ const AddNewTask = () => {
         taskName:"",
         taskDescription:"",
     });
+    const [notificationConfig, setNotificationConfig] = useState({
+        visible: false,
+        severity: "",
+        text: "",
+    })
 
     const addTask = (e) => {
         e.preventDefault();
@@ -37,27 +45,38 @@ const AddNewTask = () => {
         taskName:"",
         taskDescription:"",
         })
+        setNotificationConfig({
+            visible: true,
+            severity: "success",
+            text: "Task successfully created!",
+        })
     };
 
     return(
-        <div className="holder-centralni-dio">
-                <Sidebar />
-            <Dashboard mainHeadingTitle="Add New Task">
-
-                <div className="addNewTaskDataInput">
-                    <form className="addNewTaskForm">
-                        <input value={task.taskImage} placeholder="Task Image" name="taskImage" onChange={addTask}/>
-                    
-                        <input value={task.taskPriority} placeholder="Task Priority" name="taskPriority" onChange={addTask}/>
-                    
-                        <input value={task.taskName} placeholder="Task Name" name="taskName" onChange={addTask}/>
-                    
-                        <input value={task.taskDescription} placeholder="Task Description" name="taskDescription" onChange={addTask}/>
-                    </form>
-                    <Button buttonText="Add New Task" onClick={handleSubmitTask}/>
-                </div>
-            </Dashboard>
-        </div>
+        <>
+        {notificationConfig.visible && <Notification 
+            notificationConfig={notificationConfig}
+            setNotificationConfig={setNotificationConfig}
+        />
+        }
+        <HolderCentralniDio>
+            <Sidebar />
+                <Dashboard mainHeadingTitle="Add New Task">
+                    <div className="addNewTaskDataInput">
+                        <form className="addNewTaskForm">
+                            <input value={task.taskImage} placeholder="Task Image" name="taskImage" onChange={addTask}/>
+                        
+                            <input value={task.taskPriority} placeholder="Task Priority" name="taskPriority" onChange={addTask}/>
+                        
+                            <input value={task.taskName} placeholder="Task Name" name="taskName" onChange={addTask}/>
+                        
+                            <input value={task.taskDescription} placeholder="Task Description" name="taskDescription" onChange={addTask}/>
+                        </form>
+                        <Button buttonText="Add New Task" onClick={handleSubmitTask}/>
+                    </div>
+                </Dashboard>
+        </HolderCentralniDio>
+        </>
     )
 } 
 
