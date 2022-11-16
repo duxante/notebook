@@ -1,14 +1,4 @@
-.holder-centralni-dio {
-    min-height: 100vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    gap: 20px;
-    max-width: 1920px;
-    width: 100%;
- } 
- 
- .deletedUsersSubtitle {
+.deletedUsersSubtitle {
     display: flex;
     width: 100%;
     border-bottom: 1px solid #8080807a;

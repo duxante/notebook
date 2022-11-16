@@ -1,13 +1,3 @@
-.holder-centralni-dio {
-    min-height: 100vh;
-    display: flex;
-    justify-content: stretch;
-    align-items: stretch;
-    gap: 20px;
-    max-width: 100%;
-    width: 100%;
-}
-
 .addNewTaskDataInput {
     display: flex;
     flex-direction: column;

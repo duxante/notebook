@@ -4,6 +4,8 @@ import "./addNewUser.style.css";
 import Sidebar from "../../Common/Sidebar/sidebar.component";
 import Button from "../../Common/ButtonFolder/button.component";
 import Dashboard from "../../Common/DashboardFolder/dashboard.component";
+import Notification from "../../Common/NotificationFolder/notification.component";
+import HolderCentralniDio from "../../Common/HolderCentralniDio/holderCentralniDio.component";
 
 
 const AddNewUser = () => {
@@ -13,6 +15,12 @@ const AddNewUser = () => {
         position:"",
         status:"",
     });
+    const [notificationConfig, setNotificationConfig] = useState({
+        visible: false,
+        severity: "",
+        text: "",
+    })
+    
 
     const addUser = (e) => {
         e.preventDefault();
@@ -37,10 +45,21 @@ const AddNewUser = () => {
             position:"",
             status:"",
         })
+        setNotificationConfig({
+            visible: true,
+            severity: "success",
+            text: "User added!",
+        })
     };
 
     return(
-        <div className="holder-centralni-dio">
+        <>
+        {notificationConfig.visible && <Notification 
+            notificationConfig={notificationConfig}
+            setNotificationConfig={setNotificationConfig}
+        />
+        }
+        <HolderCentralniDio>
                 <Sidebar />
             <Dashboard mainHeadingTitle="Add New User">
 
@@ -60,7 +79,8 @@ const AddNewUser = () => {
                     <Button buttonText="Add New User" onClick={handleSubmitUser} />
                 </div>
             </Dashboard>
-        </div>
+        </HolderCentralniDio>
+        </>
     )
 } 
 

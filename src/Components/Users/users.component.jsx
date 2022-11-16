@@ -4,6 +4,7 @@ import Sidebar from "../../Common/Sidebar/sidebar.component";
 import Dashboard from "../../Common/DashboardFolder/dashboard.component";
 import fire from "../../Utils/firebase.config";
 import Notification from "../../Common/NotificationFolder/notification.component";
+import HolderCentralniDio from "../../Common/HolderCentralniDio/holderCentralniDio.component";
 
 
 
@@ -60,36 +61,36 @@ const Users = () => {
       
     return(
       <>
-      {notificationConfig.visible && 
-      <Notification 
-          notificationConfig={notificationConfig}
-          setNotificationConfig={setNotificationConfig}
-      />
-      }
-      
-      <div className="holder-centralni-dio">
+        {notificationConfig.visible && 
+          <Notification 
+              notificationConfig={notificationConfig}
+              setNotificationConfig={setNotificationConfig}
+          />
+        }
+        
+        <HolderCentralniDio>
           <Sidebar />
-          <Dashboard mainHeadingTitle="Users">
-              <div className="usersSubtitles">
-                  <h4>NAME</h4>
-                  <h4>POSITION</h4>
-                  <h4>EMPLOYED</h4>
-                  <h4>STATUS</h4>
-                  <h4>ACTION</h4>
-              </div>
-              {users.map((user, index) => {
-                return(
-                  <div key={index} className="user">
-                  <p key={Math.random()} className="userParagraph">{user.name}</p>
-                  <p key={Math.random()} className="userParagraph">{user.position}</p>
-                  <p key={Math.random()} className="userParagraph">{user.employed}</p>
-                  <p key={Math.random()} className="userParagraph">{user.status}</p>
-                  <button key={Math.random()} onClick={() => handleDeleteUser(user)}>Delete</button>
-                  </div>
-                )
-              })}
-          </Dashboard>
-      </div>  
+            <Dashboard mainHeadingTitle="Users">
+                <div className="usersSubtitles">
+                    <h4>NAME</h4>
+                    <h4>POSITION</h4>
+                    <h4>EMPLOYED</h4>
+                    <h4>STATUS</h4>
+                    <h4>ACTION</h4>
+                </div>
+                {users.map((user, index) => {
+                  return(
+                    <div key={index} className="user">
+                    <p key={Math.random()} className="userParagraph">{user.name}</p>
+                    <p key={Math.random()} className="userParagraph">{user.position}</p>
+                    <p key={Math.random()} className="userParagraph">{user.employed}</p>
+                    <p key={Math.random()} className="userParagraph">{user.status}</p>
+                    <button key={Math.random()} onClick={() => handleDeleteUser(user)}>Delete</button>
+                    </div>
+                  )
+                })}
+            </Dashboard>
+        </HolderCentralniDio>  
     </>
     )
 }
