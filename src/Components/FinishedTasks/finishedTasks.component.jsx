@@ -17,10 +17,10 @@ const FinishedTasks = () => {
         const newFinishedTasks = data.docs.map((finishedTask) => {
             const finishedTaskData = finishedTask.data();
             const singleFinishedTask = {
-                description: finishedTaskData.finishedTaskDescription,
-                name: finishedTaskData.finishedTaskName,
-                priority: finishedTaskData.finishedTaskPriority,
-                image: finishedTaskData.finishedTaskImage,
+                description: finishedTaskData.description,
+                name: finishedTaskData.name,
+                priority: finishedTaskData.priority,
+                image: finishedTaskData.image,
                 id: finishedTaskData.id,
             }
             return singleFinishedTask;
@@ -31,6 +31,7 @@ const FinishedTasks = () => {
     useEffect(() => {
         fetchFinishedTasks();
     }, []);
+
 
     return(
         <HolderCentralniDio>
@@ -45,6 +46,10 @@ const FinishedTasks = () => {
                             return(
                         <div key={index} className="oneFinishedTask">
                             <p key={Math.random()}>{finishedTask.description}</p>
+                            {/* <p key={Math.random()}>{finishedTask.name}</p>  // Nisam unio nikakcve podatke
+                            <p key={Math.random()}>{finishedTask.priority}</p>
+                            <p key={Math.random()}>{finishedTask.image}</p>
+                            <p key={Math.random()}>{finishedTask.id}</p> */}
                             <span className="closeIt">X</span>
                         </div>
                         )
