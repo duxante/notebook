@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import fire from "../../Utils/firebase.config"
 import "./finishedTasks.style.css";
 import Sidebar from "../../Common/Sidebar/sidebar.component";
 import Dashboard from "../../Common/DashboardFolder/dashboard.component";
 import HolderCentralniDio from "../../Common/HolderCentralniDio/holderCentralniDio.component";
+
 
 
 
@@ -32,6 +33,19 @@ const FinishedTasks = () => {
         fetchFinishedTasks();
     }, []);
 
+    const handleDeleteFinishedTask = async (finishedTask) => {
+        const db = fire.firestore();
+        db.collection("finishedTasks/").doc(finishedTask.id).delete({
+            description: finishedTask.description,
+            name: finishedTask.name,
+            priority: finishedTask.priority,
+            image: finishedTask.image,
+            id: finishedTask.id,
+        });
+        /* db.collection("finishedTasks").doc(finishedTask.id).delete(); */
+        console.log(finishedTask, "jesu li");
+        fetchFinishedTasks();
+    }
 
     return(
         <HolderCentralniDio>
@@ -46,11 +60,11 @@ const FinishedTasks = () => {
                             return(
                         <div key={index} className="oneFinishedTask">
                             <p key={Math.random()}>{finishedTask.description}</p>
-                            {/* <p key={Math.random()}>{finishedTask.name}</p>  // Nisam unio nikakcve podatke
+                            <p key={Math.random()}>{finishedTask.name}</p>  
                             <p key={Math.random()}>{finishedTask.priority}</p>
                             <p key={Math.random()}>{finishedTask.image}</p>
-                            <p key={Math.random()}>{finishedTask.id}</p> */}
-                            <span className="closeIt">X</span>
+                            <p key={Math.random()}>{finishedTask.id}</p> 
+                            <span key={Math.random()} className="closeIt" onClick={() => handleDeleteFinishedTask(finishedTask.id)}>X</span>
                         </div>
                         )
                         })}
