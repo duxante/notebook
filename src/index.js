@@ -15,6 +15,7 @@ import FinishedTasks from './Components/FinishedTasks/finishedTasks.component';
 import DeletedUsers from './Components/DeletedUsers/deletedUsers.component';
 import LoginWindow from './Components/LoginWindow/loginWindow.component';
 import SignUp from './Components/SignUp/signUp.component';
+import HolderCentralniDio from './Common/HolderCentralniDio/holderCentralniDio.component';
 
 
 
@@ -31,6 +32,7 @@ root.render(
         <Route path='/deletedUsers' element={<DeletedUsers />} />
         <Route path='/login' element={<LoginWindow />} />
         <Route path='/signUp' element={<SignUp />}/>
+        <Route path='/holderCentralniDio' element={<HolderCentralniDio />} />
       </Routes>
   </BrowserRouter>
 ); 
