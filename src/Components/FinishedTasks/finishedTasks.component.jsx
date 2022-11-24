@@ -4,12 +4,18 @@ import "./finishedTasks.style.css";
 import Sidebar from "../../Common/Sidebar/sidebar.component";
 import Dashboard from "../../Common/DashboardFolder/dashboard.component";
 import HolderCentralniDio from "../../Common/HolderCentralniDio/holderCentralniDio.component";
+import Notification from "../../Common/NotificationFolder/notification.component";
 
 
 
 
 const FinishedTasks = () => {
     const [finishedTasks, setFinishedTasks] = useState([]);
+    const [notificationConfig, setNotificationConfig] = useState({
+        visible: false,
+        severity: "",
+        text: "",
+    });
 
     const fetchFinishedTasks = async() => {
         const db = fire.firestore();
@@ -18,10 +24,7 @@ const FinishedTasks = () => {
         const newFinishedTasks = data.docs.map((finishedTask) => {
             const finishedTaskData = finishedTask.data();
             const singleFinishedTask = {
-                description: finishedTaskData.description,
                 name: finishedTaskData.name,
-                priority: finishedTaskData.priority,
-                image: finishedTaskData.image,
                 id: finishedTask.id,
             }
             return singleFinishedTask;
@@ -37,32 +40,45 @@ const FinishedTasks = () => {
         const db = fire.firestore();
         await db.collection("finishedTasks").doc(finishedTask.id).delete();
         fetchFinishedTasks();
+        setNotificationConfig({
+            visible: true,
+            severity: "error",
+            text: "Task successfully deleted!"
+        })
     }
 
     return(
-        <HolderCentralniDio>
-        <Sidebar />
-            <Dashboard mainHeadingTitle="Finished Tasks">            
-                <div className="titleAndFinishedTasks">
-                    <div className="titleFinishedTasksList">
-                        <h1>List of finished tasks</h1>
-                    </div>
-                    <div className="finishedTaskCards">
-                        {finishedTasks.map((finishedTask, index) => {
-                            return(
-                        <div key={index} className="oneFinishedTask">
-                            <p key={Math.random()}>{finishedTask.description}</p>
-                            <p key={Math.random()}>{finishedTask.name}</p>  
-                            <p key={Math.random()}>{finishedTask.priority}</p>
-                            <p key={Math.random()}>{finishedTask.image}</p>
-                            <span key={Math.random()} className="closeIt" onClick={() => handleDeleteFinishedTask(finishedTask)}>X</span>
+        <>
+            {notificationConfig.visible && 
+                <Notification         
+                    notificationConfig={notificationConfig}
+                    setNotificationConfig={setNotificationConfig}
+                />
+            }
+            <HolderCentralniDio>
+            <Sidebar />
+                <Dashboard mainHeadingTitle="Finished Tasks">            
+                    <div className="titleAndFinishedTasks">
+                        <div className="titleFinishedTasksList">
+                            <h1>List of finished tasks</h1>
                         </div>
-                        )
-                        })}
+                        <div className="finishedTaskCards">
+                            {finishedTasks.map((finishedTask, index) => {
+                                return(
+                            <div key={index} className="oneFinishedTask">
+                                <p key={Math.random()}>{finishedTask.name}</p>  
+                                <div>
+                                <span key={Math.random()} className="closeIt" onClick={() => handleDeleteFinishedTask(finishedTask)}>X</span>
+                                <button>Restore Task</button>
+                                </div>
+                            </div>
+                            )
+                            })}
+                        </div>
                     </div>
-                </div>
-            </Dashboard>
-        </HolderCentralniDio>
+                </Dashboard>
+            </HolderCentralniDio>
+        </>                
     )
 }
 

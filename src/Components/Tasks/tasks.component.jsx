@@ -6,64 +6,100 @@ import { useEffect, useState } from "react";
 import fire from "../../Utils/firebase.config";
 import defaultImage from "../../imagesFolder/defaultImage.svg";
 import HolderCentralniDio from "../../Common/HolderCentralniDio/holderCentralniDio.component";
+import Notification from "../../Common/NotificationFolder/notification.component";
 
 
 
 const Tasks = () => {
     const [allTasks, setAllTasks] = useState([]);
-
-    const OneTask = ({image, taskPriority, taskName, taskDescription}) => {
-        return(
-            <div className="taskCard">
-                <img src={image.length !==0 ? image : defaultImage}/>
-
-                {/* <h3 className="taskPriority">{taskPriority === "low" ? <div className="priorityLow">Low</div> : <div className="priorityHigh">High</div>}</h3> */}
-
-                <span className={taskPriority === "low" ? "priorityLow" : "priorityHigh"}>{taskPriority}</span>
-
-                <div className="nameAndDescription">
-                <h2 className="taskName">{taskName}</h2>
-                <p className="taskDescription">{taskDescription}</p>
-                </div>
-                <Button buttonText="View Task" customClassName='customStyle' />
-            </div>
-        )
-    }
+    const [notificationConfig, setNotificationConfig] = useState({
+        visible: false,
+        severity: "",
+        text: "",
+    })
 
     const fetchTasks = async() => {
         const db = fire.firestore();
         const response = db.collection("tasks");
         const data = await response.get();
         const newTasks = data.docs.map((task) => {
-            return task.data();
+            const taskData = task.data();
+            const singleTaskData = {
+                description: taskData.taskDescription,
+                image: taskData.taskImage,
+                priority: taskData.taskPriority,
+                name: taskData.taskName,
+                id: task.id,
+            }
+             return singleTaskData;
         });
         setAllTasks([...newTasks])
-    }
+    };
 
     useEffect(() => {
         fetchTasks();
     }, []);
 
-    return(
-        <HolderCentralniDio>
-            <Sidebar />
-            <Dashboard mainHeadingTitle="Tasks">            
-                <div className="titleAndTasks">
-                    <div className="titleTasksList">
-                        <h1>Tasks List</h1>
-                    </div>
+    const handleFinishTask = async (taskName, taskId) => {
+            console.log(taskName);
+            const db = fire.firestore();
+            db.collection("finishedTasks/").add({
+                name: taskName,                
+            })
+            await db.collection("tasks").doc(taskId).delete();
+            fetchTasks();
+            setNotificationConfig({
+                visible: true,
+                severity: "success",
+                text: "Successfully moved to Finished Tasks",
+            })
+    }
 
-                    <div className="taskCards">
-                        {allTasks.map(task => <OneTask
-                            image={task.taskImage}
-                            taskPriority={task.taskPriority}
-                            taskName={task.taskName}
-                            taskDescription={task.taskDescription}
-                        />)}
-                    </div>
+    const OneTask = ({image, priority, name, description, id}) => {
+        return(
+            <div className="taskCard">
+                <img src={image.length !==0 ? image : defaultImage}/>
+                <span className={priority === "low" ? "priorityLow" : "priorityHigh"}>{priority}</span>
+
+                <div className="nameAndDescription">
+                <h2 className="taskName">{name}</h2>
+                <p className="taskDescription">{description}</p>
                 </div>
-            </Dashboard>
-        </HolderCentralniDio>
+                <Button buttonText="View Task" customClassName='customStyle' />
+                <Button onClick={() => handleFinishTask(name, id)} buttonText="Finish Task" customClassName="finishTaskButtonStyle" /> 
+            </div>
+        )
+    }
+
+    return(
+        <>
+            {notificationConfig.visible && 
+                <Notification 
+                    notificationConfig={notificationConfig}
+                    setNotificationConfig={setNotificationConfig}
+                />
+            }
+            <HolderCentralniDio>
+                <Sidebar />
+                <Dashboard mainHeadingTitle="Tasks">            
+                    <div className="titleAndTasks">
+                        <div className="titleTasksList">
+                            <h1>Tasks List</h1>
+                        </div>
+
+                        <div className="taskCards">
+                            {allTasks.map(task => <OneTask
+                                image={task.image}
+                                priority={task.priority}
+                                name={task.name}
+                                description={task.description}
+                                id={task.id}
+                            />)}
+                        </div>
+                    </div>
+                </Dashboard>
+            </HolderCentralniDio>
+        </>
     )
 }
 

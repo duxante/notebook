@@ -140,6 +140,13 @@
     margin: 0px auto;
 }
 
+.finishTaskButtonStyle {
+    background: #e63946;
+    max-width: 250px;
+    margin: 10px auto 0px;
+
+}
+
 .nameAndDescription {
     display: flex;
     flex-direction: column;
