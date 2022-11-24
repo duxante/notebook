@@ -22,7 +22,7 @@ const FinishedTasks = () => {
                 name: finishedTaskData.name,
                 priority: finishedTaskData.priority,
                 image: finishedTaskData.image,
-                id: finishedTaskData.id,
+                id: finishedTask.id,
             }
             return singleFinishedTask;
         });
@@ -35,15 +35,7 @@ const FinishedTasks = () => {
 
     const handleDeleteFinishedTask = async (finishedTask) => {
         const db = fire.firestore();
-        db.collection("finishedTasks/").doc(finishedTask.id).delete({
-            description: finishedTask.description,
-            name: finishedTask.name,
-            priority: finishedTask.priority,
-            image: finishedTask.image,
-            id: finishedTask.id,
-        });
-        /* db.collection("finishedTasks").doc(finishedTask.id).delete(); */
-        console.log(finishedTask, "jesu li");
+        await db.collection("finishedTasks").doc(finishedTask.id).delete();
         fetchFinishedTasks();
     }
 
@@ -63,8 +55,7 @@ const FinishedTasks = () => {
                             <p key={Math.random()}>{finishedTask.name}</p>  
                             <p key={Math.random()}>{finishedTask.priority}</p>
                             <p key={Math.random()}>{finishedTask.image}</p>
-                            <p key={Math.random()}>{finishedTask.id}</p> 
-                            <span key={Math.random()} className="closeIt" onClick={() => handleDeleteFinishedTask(finishedTask.id)}>X</span>
+                            <span key={Math.random()} className="closeIt" onClick={() => handleDeleteFinishedTask(finishedTask)}>X</span>
                         </div>
                         )
                         })}
