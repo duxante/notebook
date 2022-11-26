@@ -26,7 +26,7 @@ const FinishedTasks = () => {
             const singleFinishedTask = {
                 name: finishedTaskData.name,
                 id: finishedTask.id,
-            }
+            };
             return singleFinishedTask;
         });
         setFinishedTasks([...newFinishedTasks]);
@@ -36,6 +36,25 @@ const FinishedTasks = () => {
         fetchFinishedTasks();
     }, []);
 
+    const handleRestoreFinishedTask = async (restoreTask) => {
+        const db = fire.firestore();
+        db.collection("tasks/").add({
+            name: restoreTask.name,
+            image: restoreTask.image,
+            description: restoreTask.description,
+            id: restoreTask.id,
+            priority: restoreTask.priority,
+        });
+        console.log(restoreTask);
+        await db.collection("finishedTasks").doc(restoreTask.id).delete();
+        fetchFinishedTasks();
+        setNotificationConfig({
+            visible: true,
+            severity: "success",
+            text: "Task successfully restored!",
+        });
+    }
+
     const handleDeleteFinishedTask = async (finishedTask) => {
         const db = fire.firestore();
         await db.collection("finishedTasks").doc(finishedTask.id).delete();
@@ -44,8 +63,8 @@ const FinishedTasks = () => {
             visible: true,
             severity: "error",
             text: "Task successfully deleted!"
-        })
-    }
+        });
+    };
 
     return(
         <>
@@ -63,13 +82,16 @@ const FinishedTasks = () => {
                             <h1>List of finished tasks</h1>
                         </div>
                         <div className="finishedTaskCards">
-                            {finishedTasks.map((finishedTask, index) => {
+                            {finishedTasks.map((finishedTask, index, restoreTask) => {
                                 return(
                             <div key={index} className="oneFinishedTask">
-                                <p key={Math.random()}>{finishedTask.name}</p>  
+                                <p key={Math.random()}>{finishedTask.name}</p>
+                                <p key={Math.random()}>{finishedTask.priority}</p>  
+                                <p key={Math.random()}>{finishedTask.image}</p>
+                                <p key={Math.random()}>{finishedTask.description}</p>
                                 <div>
+                                <button key={Math.random()} className="restoreButton" onClick={() => handleRestoreFinishedTask(restoreTask)}>Restore Task</button>
                                 <span key={Math.random()} className="closeIt" onClick={() => handleDeleteFinishedTask(finishedTask)}>X</span>
-                                <button>Restore Task</button>
                                 </div>
                             </div>
                             )

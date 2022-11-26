@@ -25,10 +25,10 @@ const Tasks = () => {
         const newTasks = data.docs.map((task) => {
             const taskData = task.data();
             const singleTaskData = {
-                description: taskData.taskDescription,
-                image: taskData.taskImage,
-                priority: taskData.taskPriority,
-                name: taskData.taskName,
+                description: taskData.description,
+                image: taskData.image,
+                priority: taskData.priority,
+                name: taskData.name,
                 id: task.id,
             }
              return singleTaskData;
