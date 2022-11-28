@@ -1,12 +1,12 @@
-import Sidebar from "../../Common/Sidebar/sidebar.component";
-import "./tasks.style.css";
-import Button from "../../Common/ButtonFolder/button.component";
-import Dashboard from "../../Common/DashboardFolder/dashboard.component";
 import { useEffect, useState } from "react";
 import fire from "../../Utils/firebase.config";
-import defaultImage from "../../imagesFolder/defaultImage.svg";
+import "./tasks.style.css";
+import Sidebar from "../../Common/Sidebar/sidebar.component";
+import Button from "../../Common/ButtonFolder/button.component";
+import Dashboard from "../../Common/DashboardFolder/dashboard.component";
 import HolderCentralniDio from "../../Common/HolderCentralniDio/holderCentralniDio.component";
 import Notification from "../../Common/NotificationFolder/notification.component";
+import defaultImage from "../../imagesFolder/defaultImage.svg";
 
 
 
