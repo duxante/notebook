@@ -8,9 +8,6 @@ import Notification from "../../Common/NotificationFolder/notification.component
 import Button from "../../Common/ButtonFolder/button.component";
 import defaultImage from "../../imagesFolder/defaultImage.svg";
 
-
-
-
 const FinishedTasks = () => {
     const [finishedTasks, setFinishedTasks] = useState([]);
     const [notificationConfig, setNotificationConfig] = useState({
@@ -41,25 +38,25 @@ const FinishedTasks = () => {
         fetchFinishedTasks();
     }, []);
 
-    const OneFinishedTask = ({name, description, image, id, priority, finishedTask}) => {
+    const OneFinishedTask = ({name, description, image, id, priority, completeTask}) => {
         return(
             <div className="finishedTaskCard">
-                <span className="closeIt" onClick={() => handleDeleteFinishedTask(name, id)}>X</span>
-                <img src={image?.length !==0 ? image : defaultImage}/>
+                <span className="closeIt" onClick={() => handleDeleteFinishedTask(id)}>X</span>
+                <img src={image?.length !== 0 ? image : defaultImage}/>
                 <span className={priority === "low" ? "finishedTaskPriorityLow" : "finishedTaskPriorityHigh"}>{priority}</span>
                 <div className="finishedTaskNameAndDescription">
                     <h2 className="finishedTaskName">{name}</h2>
                     <p className="finishedTaskDescription">{description}</p>
                 </div>
                 <Button buttonText="View Task" customClassName="customStyle" />
-                <Button onClick={() => handleRestoreFinishedTask(finishedTask)} buttonText="Restore Task" customClassName="restoreFinishedTaskButtonStyle" />
+                <Button onClick={() => handleRestoreFinishedTask(completeTask)} buttonText="Restore Task" customClassName="restoreFinishedTaskButtonStyle" />
             </div>
         )
     }
 
-    const handleDeleteFinishedTask = async (finishedTask) => {
+    const handleDeleteFinishedTask = async (finishedTaskId) => {
         const db = fire.firestore();
-        await db.collection("finishedTasks").doc(finishedTask.id).delete();
+        await db.collection("finishedTasks").doc(finishedTaskId).delete();
         fetchFinishedTasks();
         setNotificationConfig({
             visible: true,
@@ -69,16 +66,15 @@ const FinishedTasks = () => {
     };
 
 
-    const handleRestoreFinishedTask = async (taskName, taskId) => {
+    const handleRestoreFinishedTask = async (completeTask) => {
         const db = fire.firestore();
         db.collection("tasks/").add({
-            name: taskName,
-            /* image: restoreTask.image,
-            description: restoreTask.description, */
-            id: taskId,
-           /*  priority: restoreTask.priority, */
+            name: completeTask.name,
+            image: completeTask.image,
+            description: completeTask.description,
+            priority: completeTask.priority,
         });
-        await db.collection("finishedTasks").doc(taskId).delete();
+        await db.collection("finishedTasks").doc(completeTask.id).delete();
         fetchFinishedTasks();
         setNotificationConfig({
             visible: true,
@@ -104,6 +100,7 @@ const FinishedTasks = () => {
                         </div>
                         <div className="finishedTaskCards">
                         {finishedTasks.map(finishedTask => <OneFinishedTask
+                                completeTask={finishedTask}
                                 image={finishedTask.image}
                                 priority={finishedTask.priority}
                                 name={finishedTask.name}
