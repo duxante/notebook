@@ -7,11 +7,13 @@ import Dashboard from "../../Common/DashboardFolder/dashboard.component";
 import HolderCentralniDio from "../../Common/HolderCentralniDio/holderCentralniDio.component";
 import Notification from "../../Common/NotificationFolder/notification.component";
 import defaultImage from "../../imagesFolder/defaultImage.svg";
+import TransitionsModal from "../../Common/PopUp/popUp.component";
 
 
 
 const Tasks = () => {
     const [allTasks, setAllTasks] = useState([]);
+    const [isModalVisible, setIsModalVisible] = useState(false);
     const [notificationConfig, setNotificationConfig] = useState({
         visible: false,
         severity: "",
@@ -41,7 +43,8 @@ const Tasks = () => {
     }, []);
 
     const handleFinishTask = async (completeTask) => {
-            const db = fire.firestore();
+                setIsModalVisible(true);
+    /*         const db = fire.firestore();
             db.collection("finishedTasks/").add({
                 image: completeTask.image,
                 priority: completeTask.priority,
@@ -54,7 +57,7 @@ const Tasks = () => {
                 visible: true,
                 severity: "success",
                 text: "Successfully moved to Finished Tasks",
-            })
+            }) */
     }
 
     const OneTask = ({image, priority, name, description, id, completeTask}) => {
@@ -81,6 +84,12 @@ const Tasks = () => {
                     setNotificationConfig={setNotificationConfig}
                 />
             }
+
+            <TransitionsModal 
+            title="Do you want to finish task?"
+            isOpen={isModalVisible}
+            />
+            
             <HolderCentralniDio>
                 <Sidebar />
                 <Dashboard mainHeadingTitle="Tasks">            
