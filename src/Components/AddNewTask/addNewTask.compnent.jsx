@@ -34,10 +34,10 @@ const AddNewTask = () => {
         e.preventDefault();
         const db = fire.firestore();
         db.collection("tasks/").add({
-            taskImage: task.taskImage,
-            taskPriority: task.taskPriority,
-            taskName: task.taskName,
-            taskDescription: task.taskDescription,
+            image: task.taskImage,
+            priority: task.taskPriority,
+            name: task.taskName,
+            description: task.taskDescription,
         });
         setTask({
         taskImage:"",

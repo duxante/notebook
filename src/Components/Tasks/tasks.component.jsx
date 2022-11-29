@@ -40,13 +40,15 @@ const Tasks = () => {
         fetchTasks();
     }, []);
 
-    const handleFinishTask = async (taskName, taskId) => {
-            console.log(taskName);
+    const handleFinishTask = async (completeTask) => {
             const db = fire.firestore();
             db.collection("finishedTasks/").add({
-                name: taskName,                
-            })
-            await db.collection("tasks").doc(taskId).delete();
+                image: completeTask.image,
+                priority: completeTask.priority,
+                name: completeTask.name,
+                description: completeTask.description,               
+            });
+            await db.collection("tasks").doc(completeTask.id).delete();
             fetchTasks();
             setNotificationConfig({
                 visible: true,
@@ -55,10 +57,10 @@ const Tasks = () => {
             })
     }
 
-    const OneTask = ({image, priority, name, description, id}) => {
+    const OneTask = ({image, priority, name, description, id, completeTask}) => {
         return(
             <div className="taskCard">
-                <img src={image.length !==0 ? image : defaultImage}/>
+                <img src={image?.length !== 0 ? image : defaultImage}/>
                 <span className={priority === "low" ? "priorityLow" : "priorityHigh"}>{priority}</span>
 
                 <div className="nameAndDescription">
@@ -66,7 +68,7 @@ const Tasks = () => {
                 <p className="taskDescription">{description}</p>
                 </div>
                 <Button buttonText="View Task" customClassName='customStyle' />
-                <Button onClick={() => handleFinishTask(name, id)} buttonText="Finish Task" customClassName="finishTaskButtonStyle" /> 
+                <Button onClick={() => handleFinishTask(completeTask)} buttonText="Finish Task" customClassName="finishTaskButtonStyle" /> 
             </div>
         )
     }
@@ -89,6 +91,7 @@ const Tasks = () => {
 
                         <div className="taskCards">
                             {allTasks.map(task => <OneTask
+                                completeTask={task}
                                 image={task.image}
                                 priority={task.priority}
                                 name={task.name}
