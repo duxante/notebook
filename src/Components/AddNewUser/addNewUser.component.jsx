@@ -6,6 +6,7 @@ import Button from "../../Common/ButtonFolder/button.component";
 import Dashboard from "../../Common/DashboardFolder/dashboard.component";
 import Notification from "../../Common/NotificationFolder/notification.component";
 import HolderCentralniDio from "../../Common/HolderCentralniDio/holderCentralniDio.component";
+import TransitionsModal from "../../Common/PopUp/popUp.component";
 
 
 const AddNewUser = () => {
@@ -15,6 +16,7 @@ const AddNewUser = () => {
         position:"",
         status:"",
     });
+    const [isModalVisible, setIsModalVisible] = useState(false);
     const [notificationConfig, setNotificationConfig] = useState({
         visible: false,
         severity: "",
@@ -31,7 +33,8 @@ const AddNewUser = () => {
     }
 
     const handleSubmitUser = (e) => {
-        e.preventDefault();
+        setIsModalVisible(true);
+  /*       e.preventDefault();
         const db = fire.firestore();
         db.collection("users/").add({
           name: user.name,
@@ -49,7 +52,7 @@ const AddNewUser = () => {
             visible: true,
             severity: "success",
             text: "User added!",
-        })
+        }) */
     };
 
     return(
@@ -59,6 +62,11 @@ const AddNewUser = () => {
             setNotificationConfig={setNotificationConfig}
         />
         }
+
+        <TransitionsModal 
+        title="Add user?"
+        isOpen={isModalVisible}
+        />
         <HolderCentralniDio>
                 <Sidebar />
             <Dashboard mainHeadingTitle="Add New User">

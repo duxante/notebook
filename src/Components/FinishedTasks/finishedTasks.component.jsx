@@ -7,9 +7,11 @@ import HolderCentralniDio from "../../Common/HolderCentralniDio/holderCentralniD
 import Notification from "../../Common/NotificationFolder/notification.component";
 import Button from "../../Common/ButtonFolder/button.component";
 import defaultImage from "../../imagesFolder/defaultImage.svg";
+import TransitionsModal from "../../Common/PopUp/popUp.component";
 
 const FinishedTasks = () => {
     const [finishedTasks, setFinishedTasks] = useState([]);
+    const [isModalVisible, setIsModalVisible] = useState(false);
     const [notificationConfig, setNotificationConfig] = useState({
         visible: false,
         severity: "",
@@ -67,7 +69,8 @@ const FinishedTasks = () => {
 
 
     const handleRestoreFinishedTask = async (completeTask) => {
-        const db = fire.firestore();
+        setIsModalVisible(true);
+  /*       const db = fire.firestore();
         db.collection("tasks/").add({
             name: completeTask.name,
             image: completeTask.image,
@@ -80,7 +83,7 @@ const FinishedTasks = () => {
             visible: true,
             severity: "success",
             text: "Task successfully restored!",
-        });
+        }); */
     }
 
     return(
@@ -91,6 +94,11 @@ const FinishedTasks = () => {
                     setNotificationConfig={setNotificationConfig}
                 />
             }
+            <TransitionsModal
+            title="Are you sure you want to restore task?"
+            /* subtitle="Jel radi ovo?" */
+            isOpen={isModalVisible}
+            />
             <HolderCentralniDio>
             <Sidebar />
                 <Dashboard mainHeadingTitle="Finished Tasks">            

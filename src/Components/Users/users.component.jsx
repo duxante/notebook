@@ -5,11 +5,13 @@ import Dashboard from "../../Common/DashboardFolder/dashboard.component";
 import fire from "../../Utils/firebase.config";
 import Notification from "../../Common/NotificationFolder/notification.component";
 import HolderCentralniDio from "../../Common/HolderCentralniDio/holderCentralniDio.component";
+import TransitionsModal from "../../Common/PopUp/popUp.component";
 
 
 
 const Users = () => {
     const [users, setUsers] = useState([]);
+    const [isModalVisible, setIsModalVisible] = useState(false);
     const [notificationConfig, setNotificationConfig] = useState({
       visible: false,
       severity: "",
@@ -40,7 +42,8 @@ const Users = () => {
 
     
     const handleDeleteUser = async (user) => {
-      const db = fire.firestore();
+      setIsModalVisible(true);
+      /* const db = fire.firestore();
       db.collection("deletedUsers/").add({
         name: user.name,
         position: user.position,
@@ -53,7 +56,7 @@ const Users = () => {
         visible: true,
         severity: "error",
         text: "User sucssesfully deleted!",
-    })
+    }) */
     }
 
     
@@ -68,6 +71,11 @@ const Users = () => {
           />
         }
         
+        <TransitionsModal 
+        title="Do you want to delete user?"
+        isOpen={isModalVisible}
+        />
+
         <HolderCentralniDio>
           <Sidebar />
             <Dashboard mainHeadingTitle="Users">

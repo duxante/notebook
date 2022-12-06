@@ -5,10 +5,12 @@ import { useState, useEffect } from "react";
 import fire from "../../Utils/firebase.config";
 import Notification from "../../Common/NotificationFolder/notification.component";
 import HolderCentralniDio from "../../Common/HolderCentralniDio/holderCentralniDio.component";
+import TransitionsModal from "../../Common/PopUp/popUp.component";
 
 
 const DeletedUsers = () => {
     const [deletedUsers, setDeletedUsers] = useState([]);
+    const [isModalVisible, setIsModalVisible] = useState(false);
     const [notificationConfig, setNotificationConfig] = useState({
         visible: false,
         severity: "",
@@ -40,7 +42,8 @@ const DeletedUsers = () => {
 
 
     const handleReactivateUser = async (reactivatedUser)  => {
-        const db = fire.firestore();
+        setIsModalVisible(true);
+        /* const db = fire.firestore();
         db.collection("users/").add({
             name: reactivatedUser.name,
             position: reactivatedUser.position,
@@ -54,7 +57,7 @@ const DeletedUsers = () => {
             visible: true,
             severity: "success",
             text: "User successfully reactivated!",
-        })
+        }) */
     }
 
 
@@ -69,6 +72,11 @@ const DeletedUsers = () => {
             setNotificationConfig={setNotificationConfig}
         />
         }
+        
+        <TransitionsModal 
+        title="Do you want to reactivate user?"
+        isOpen={isModalVisible}
+        />
 
         <HolderCentralniDio>
             <Sidebar />

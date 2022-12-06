@@ -6,6 +6,7 @@ import Sidebar from "../../Common/Sidebar/sidebar.component";
 import "./addNewTask.style.css";
 import Notification from "../../Common/NotificationFolder/notification.component";
 import HolderCentralniDio from "../../Common/HolderCentralniDio/holderCentralniDio.component";
+import TransitionsModal from "../../Common/PopUp/popUp.component";
 
 
 
@@ -16,6 +17,7 @@ const AddNewTask = () => {
         taskName:"",
         taskDescription:"",
     });
+    const [isModalVisible, setIsModalVisible] = useState(false);
     const [notificationConfig, setNotificationConfig] = useState({
         visible: false,
         severity: "",
@@ -31,7 +33,8 @@ const AddNewTask = () => {
     }
 
     const handleSubmitTask = (e) => {
-        e.preventDefault();
+        setIsModalVisible(true);
+  /*       e.preventDefault();
         const db = fire.firestore();
         db.collection("tasks/").add({
             image: task.taskImage,
@@ -49,7 +52,7 @@ const AddNewTask = () => {
             visible: true,
             severity: "success",
             text: "Task successfully created!",
-        })
+        }) */
     };
 
     return(
@@ -59,6 +62,10 @@ const AddNewTask = () => {
             setNotificationConfig={setNotificationConfig}
         />
         }
+        <TransitionsModal 
+        title="Add new task?"
+        isOpen={isModalVisible}
+        />
         <HolderCentralniDio>
             <Sidebar />
                 <Dashboard mainHeadingTitle="Add New Task">
