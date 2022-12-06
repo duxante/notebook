@@ -11,7 +11,8 @@ import TransitionsModal from "../../Common/PopUp/popUp.component";
 
 const Users = () => {
     const [users, setUsers] = useState([]);
-    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
+    const [userForDelete, setUserForDelete] = useState(null);
     const [notificationConfig, setNotificationConfig] = useState({
       visible: false,
       severity: "",
@@ -41,22 +42,28 @@ const Users = () => {
       }, []);
 
     
-    const handleDeleteUser = async (user) => {
-      setIsModalVisible(true);
-      /* const db = fire.firestore();
+    const handleDeleteUser = async () => {
+      const db = fire.firestore();
       db.collection("deletedUsers/").add({
-        name: user.name,
-        position: user.position,
-        employed: user.employed,
-        status: user.status,
+        name: userForDelete.name,
+        position: userForDelete.position,
+        employed: userForDelete.employed,
+        status: userForDelete.status,
       });
-      await db.collection("users").doc(user.id).delete();
+      await db.collection("users").doc(userForDelete.id).delete();
       fetchUsers();
       setNotificationConfig({
         visible: true,
         severity: "error",
         text: "User sucssesfully deleted!",
-    }) */
+    }) 
+      setIsOpen(false);
+    }
+
+    const handleOpenDeleteConfirm = (user) => {
+      setIsOpen(true);
+      setUserForDelete(user);
+      console.log(user);
     }
 
     
@@ -73,7 +80,9 @@ const Users = () => {
         
         <TransitionsModal 
         title="Do you want to delete user?"
-        isOpen={isModalVisible}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        onClick={handleDeleteUser}
         />
 
         <HolderCentralniDio>
@@ -93,7 +102,7 @@ const Users = () => {
                     <p key={Math.random()} className="userParagraph">{user.position}</p>
                     <p key={Math.random()} className="userParagraph">{user.employed}</p>
                     <p key={Math.random()} className="userParagraph">{user.status}</p>
-                    <button key={Math.random()} onClick={() => handleDeleteUser(user)}>Delete</button>
+                    <button key={Math.random()} onClick={() => handleOpenDeleteConfirm(user)}>Delete</button>
                     </div>
                   )
                 })}

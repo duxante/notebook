@@ -10,7 +10,8 @@ import TransitionsModal from "../../Common/PopUp/popUp.component";
 
 const DeletedUsers = () => {
     const [deletedUsers, setDeletedUsers] = useState([]);
-    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
+    const [userForReactivate, setUserForReactivate] = useState(null);
     const [notificationConfig, setNotificationConfig] = useState({
         visible: false,
         severity: "",
@@ -41,24 +42,31 @@ const DeletedUsers = () => {
       }, []);
 
 
-    const handleReactivateUser = async (reactivatedUser)  => {
-        setIsModalVisible(true);
-        /* const db = fire.firestore();
+    const handleReactivateUser = async ()  => {
+        const db = fire.firestore();
         db.collection("users/").add({
-            name: reactivatedUser.name,
-            position: reactivatedUser.position,
-            status: reactivatedUser.status,
-            employed: reactivatedUser.employed,
-            id: reactivatedUser.id,
+            name: userForReactivate.name,
+            position: userForReactivate.position,
+            status: userForReactivate.status,
+            employed: userForReactivate.employed,
+            id: userForReactivate.id,
         });
-        await db.collection("deletedUsers").doc(reactivatedUser.id).delete();
+        await db.collection("deletedUsers").doc(userForReactivate.id).delete();
         fetchDeletedUsers();
         setNotificationConfig({
             visible: true,
             severity: "success",
             text: "User successfully reactivated!",
-        }) */
+        })
+        setIsOpen(false);
     }
+
+    const handleOpenReactivateConfirm = (userForReactivation) => {
+        setIsOpen(true);
+        setUserForReactivate(userForReactivation);
+        console.log(userForReactivation);
+    }
+
 
 
 
@@ -75,7 +83,9 @@ const DeletedUsers = () => {
         
         <TransitionsModal 
         title="Do you want to reactivate user?"
-        isOpen={isModalVisible}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        onClick={handleReactivateUser}
         />
 
         <HolderCentralniDio>
@@ -95,7 +105,7 @@ const DeletedUsers = () => {
                         <p key={Math.random()} className="deletedUserParagraph">{deletedUser.position}</p>
                         <p key={Math.random()} className="deletedUserParagraph">{deletedUser.status}</p>
                         <p key={Math.random()} className="deletedUserParagraph">{deletedUser.employed}</p>
-                        <button key={Math.random()} onClick={() => handleReactivateUser(deletedUser)}>Reactivate</button>
+                        <button key={Math.random()} onClick={() => handleOpenReactivateConfirm(deletedUser)}>Reactivate</button>
                     </div>
                     )
                 })} 

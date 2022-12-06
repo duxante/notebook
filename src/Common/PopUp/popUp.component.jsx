@@ -18,16 +18,12 @@ const style = {
   p: 4,
 };
 
-const TransitionsModal = ({title, subtitle, isOpen}) => {
-  const [open, setOpen] = React.useState(isOpen);
-  /* const handleOpen = () => setOpen(true); */
-  const handleClose = () => setOpen(false);
+const TransitionsModal = ({title, subtitle, isOpen, setIsOpen, onClick}) => {
 
-
+  const handleClose = () => setIsOpen(false);
 
   return (
     <div>
-      {/* <Button onClick={handleOpen}>Open modal</Button> */}
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -48,8 +44,8 @@ const TransitionsModal = ({title, subtitle, isOpen}) => {
               {subtitle}
             </Typography>
             <div className="confirmDeclineButtons">
-                <button className="confirmButton">Confirm</button>
-                <button className="declineButton">Decline</button>
+                <button className="confirmButton" onClick={onClick}>Confirm</button>
+                <button className="declineButton" onClick={handleClose}>Decline</button>
             </div>
           </Box>
         </Fade>
