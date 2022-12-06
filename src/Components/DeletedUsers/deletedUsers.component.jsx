@@ -64,13 +64,7 @@ const DeletedUsers = () => {
     const handleOpenReactivateConfirm = (userForReactivation) => {
         setIsOpen(true);
         setUserForReactivate(userForReactivation);
-        console.log(userForReactivation);
     }
-
-
-
-
-    console.log(deletedUsers,'svi korisnici');
 
     return(
         <>

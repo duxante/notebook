@@ -11,7 +11,8 @@ import TransitionsModal from "../../Common/PopUp/popUp.component";
 
 const FinishedTasks = () => {
     const [finishedTasks, setFinishedTasks] = useState([]);
-    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
+    const [restoreFinishedTask, setRestoreFinishedTask] = useState(null);
     const [notificationConfig, setNotificationConfig] = useState({
         visible: false,
         severity: "",
@@ -51,7 +52,7 @@ const FinishedTasks = () => {
                     <p className="finishedTaskDescription">{description}</p>
                 </div>
                 <Button buttonText="View Task" customClassName="customStyle" />
-                <Button onClick={() => handleRestoreFinishedTask(completeTask)} buttonText="Restore Task" customClassName="restoreFinishedTaskButtonStyle" />
+                <Button onClick={() => handleOpenRestoreTaskConfirm(completeTask)} buttonText="Restore Task" customClassName="restoreFinishedTaskButtonStyle" />
             </div>
         )
     }
@@ -68,22 +69,27 @@ const FinishedTasks = () => {
     };
 
 
-    const handleRestoreFinishedTask = async (completeTask) => {
-        setIsModalVisible(true);
-  /*       const db = fire.firestore();
+    const handleRestoreFinishedTask = async () => {
+        const db = fire.firestore();
         db.collection("tasks/").add({
-            name: completeTask.name,
-            image: completeTask.image,
-            description: completeTask.description,
-            priority: completeTask.priority,
+            name: restoreFinishedTask.name,
+            image: restoreFinishedTask.image,
+            description: restoreFinishedTask.description,
+            priority: restoreFinishedTask.priority,
         });
-        await db.collection("finishedTasks").doc(completeTask.id).delete();
+        await db.collection("finishedTasks").doc(restoreFinishedTask.id).delete();
         fetchFinishedTasks();
         setNotificationConfig({
             visible: true,
             severity: "success",
             text: "Task successfully restored!",
-        }); */
+        });
+        setIsOpen(false);
+    }
+
+    const handleOpenRestoreTaskConfirm = (taskToRestore) => {
+        setIsOpen(true);
+        setRestoreFinishedTask(taskToRestore);
     }
 
     return(
@@ -96,8 +102,9 @@ const FinishedTasks = () => {
             }
             <TransitionsModal
             title="Are you sure you want to restore task?"
-            /* subtitle="Jel radi ovo?" */
-            isOpen={isModalVisible}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            onClick={handleRestoreFinishedTask}
             />
             <HolderCentralniDio>
             <Sidebar />

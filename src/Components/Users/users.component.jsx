@@ -63,11 +63,7 @@ const Users = () => {
     const handleOpenDeleteConfirm = (user) => {
       setIsOpen(true);
       setUserForDelete(user);
-      console.log(user);
     }
-
-    
-    console.log(users,'svi korisnici');
       
     return(
       <>
