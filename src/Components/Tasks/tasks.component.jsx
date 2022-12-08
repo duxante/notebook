@@ -13,7 +13,8 @@ import TransitionsModal from "../../Common/PopUp/popUp.component";
 
 const Tasks = () => {
     const [allTasks, setAllTasks] = useState([]);
-    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
+    const [taskForFinish, setTaskForFinish] = useState(null);
     const [notificationConfig, setNotificationConfig] = useState({
         visible: false,
         severity: "",
@@ -42,25 +43,30 @@ const Tasks = () => {
         fetchTasks();
     }, []);
 
-    const handleFinishTask = async (completeTask) => {
-                setIsModalVisible(true);
-    /*         const db = fire.firestore();
+    const handleFinishTask = async () => {
+             const db = fire.firestore();
             db.collection("finishedTasks/").add({
-                image: completeTask.image,
-                priority: completeTask.priority,
-                name: completeTask.name,
-                description: completeTask.description,               
+                image: taskForFinish.image,
+                priority: taskForFinish.priority,
+                name: taskForFinish.name,
+                description: taskForFinish.description,               
             });
-            await db.collection("tasks").doc(completeTask.id).delete();
+            await db.collection("tasks").doc(taskForFinish.id).delete();
             fetchTasks();
             setNotificationConfig({
                 visible: true,
                 severity: "success",
                 text: "Successfully moved to Finished Tasks",
-            }) */
+            })
+            setIsOpen(false);
+        }
+
+    const handleOpenFinishTaskConfirm = (finishThisOne) => {
+        setIsOpen(true);
+        setTaskForFinish(finishThisOne);
     }
 
-    const OneTask = ({image, priority, name, description, id, completeTask}) => {
+    const OneTask = ({image, priority, name, description, completeTask}) => {
         return(
             <div className="taskCard">
                 <img src={image?.length !== 0 ? image : defaultImage}/>
@@ -71,7 +77,7 @@ const Tasks = () => {
                 <p className="taskDescription">{description}</p>
                 </div>
                 <Button buttonText="View Task" customClassName='customStyle' />
-                <Button onClick={() => handleFinishTask(completeTask)} buttonText="Finish Task" customClassName="finishTaskButtonStyle" /> 
+                <Button onClick={() => handleOpenFinishTaskConfirm(completeTask)} buttonText="Finish Task" customClassName="finishTaskButtonStyle" /> 
             </div>
         )
     }
@@ -87,7 +93,9 @@ const Tasks = () => {
 
             <TransitionsModal 
             title="Do you want to finish task?"
-            isOpen={isModalVisible}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            onClick={handleFinishTask}
             />
             
             <HolderCentralniDio>
