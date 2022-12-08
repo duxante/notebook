@@ -16,7 +16,7 @@ const AddNewUser = () => {
         position:"",
         status:"",
     });
-    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const [notificationConfig, setNotificationConfig] = useState({
         visible: false,
         severity: "",
@@ -33,8 +33,7 @@ const AddNewUser = () => {
     }
 
     const handleSubmitUser = (e) => {
-        setIsModalVisible(true);
-  /*       e.preventDefault();
+        e.preventDefault();
         const db = fire.firestore();
         db.collection("users/").add({
           name: user.name,
@@ -52,8 +51,13 @@ const AddNewUser = () => {
             visible: true,
             severity: "success",
             text: "User added!",
-        }) */
+        })
+        setIsOpen(false);
     };
+
+    const handleConfirmAddNewUser = () => {
+        setIsOpen(true);
+    }
 
     return(
         <>
@@ -65,7 +69,9 @@ const AddNewUser = () => {
 
         <TransitionsModal 
         title="Add user?"
-        isOpen={isModalVisible}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        onClick={handleSubmitUser}
         />
         <HolderCentralniDio>
                 <Sidebar />
@@ -84,7 +90,7 @@ const AddNewUser = () => {
                     
                         <input value={user.status} placeholder="Status" name="status" onChange={addUser}/>
                     </form>    
-                    <Button buttonText="Add New User" onClick={handleSubmitUser} />
+                    <Button buttonText="Add New User" onClick={handleConfirmAddNewUser} />
                 </div>
             </Dashboard>
         </HolderCentralniDio>
