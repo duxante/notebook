@@ -37,6 +37,7 @@ const TransitionsModal = ({title, subtitle, isOpen, setIsOpen, onClick}) => {
       >
         <Fade in={isOpen}>
           <Box sx={style}>
+            <span className="confirmX" onClick={handleClose}>X</span>
             <h2 className="ParagraphTitle">
               {title}
             </h2>
