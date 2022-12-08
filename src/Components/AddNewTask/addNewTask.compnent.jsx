@@ -17,7 +17,7 @@ const AddNewTask = () => {
         taskName:"",
         taskDescription:"",
     });
-    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const [notificationConfig, setNotificationConfig] = useState({
         visible: false,
         severity: "",
@@ -33,8 +33,7 @@ const AddNewTask = () => {
     }
 
     const handleSubmitTask = (e) => {
-        setIsModalVisible(true);
-  /*       e.preventDefault();
+        e.preventDefault();
         const db = fire.firestore();
         db.collection("tasks/").add({
             image: task.taskImage,
@@ -52,8 +51,14 @@ const AddNewTask = () => {
             visible: true,
             severity: "success",
             text: "Task successfully created!",
-        }) */
+        })
+        setIsOpen(false);
     };
+
+    const handleConfirmAddNewTask = () => {
+        setIsOpen(true);
+
+    }
 
     return(
         <>
@@ -64,7 +69,9 @@ const AddNewTask = () => {
         }
         <TransitionsModal 
         title="Add new task?"
-        isOpen={isModalVisible}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        onClick={handleSubmitTask}
         />
         <HolderCentralniDio>
             <Sidebar />
@@ -79,7 +86,7 @@ const AddNewTask = () => {
                         
                             <input value={task.taskDescription} placeholder="Task Description" name="taskDescription" onChange={addTask}/>
                         </form>
-                        <Button buttonText="Add New Task" onClick={handleSubmitTask}/>
+                        <Button buttonText="Add New Task" onClick={handleConfirmAddNewTask}/>
                     </div>
                 </Dashboard>
         </HolderCentralniDio>
