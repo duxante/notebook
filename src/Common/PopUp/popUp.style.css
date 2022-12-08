@@ -12,7 +12,7 @@
 }
 
 .confirmButton {
-    background-color: #34495e;
+    background-color: #a7c957;
     max-width: 160px;
     width: 100%;
     padding: 10px 0px;
@@ -27,7 +27,7 @@
 }
 
 .declineButton {
-    background-color: #34495e;
+    background-color: #e63946;
     max-width: 160px;
     width: 100%;
     padding: 10px 0px;
@@ -47,3 +47,11 @@
     align-items: center;
     text-align: center;
 }
+
+.confirmX {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}    
