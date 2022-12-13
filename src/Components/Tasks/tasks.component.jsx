@@ -8,13 +8,16 @@ import HolderCentralniDio from "../../Common/HolderCentralniDio/holderCentralniD
 import Notification from "../../Common/NotificationFolder/notification.component";
 import defaultImage from "../../imagesFolder/defaultImage.svg";
 import TransitionsModal from "../../Common/PopUp/popUp.component";
+import OverviewModal from "../../Common/OverviewModal/overviewModal.component";
 
 
 
 const Tasks = () => {
     const [allTasks, setAllTasks] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
+    const [openViewModal, setOpenViewModal] = useState(false);
     const [taskForFinish, setTaskForFinish] = useState(null);
+    const [openTaskAndView, setOpenTaskAndView] = useState(null);
     const [notificationConfig, setNotificationConfig] = useState({
         visible: false,
         severity: "",
@@ -61,22 +64,38 @@ const Tasks = () => {
             setIsOpen(false);
         }
 
+    const handleOpenTaskAndView =async () => {
+        const db = fire.firestore();
+        db.collection("tasks/")
+    }
+
+
     const handleOpenFinishTaskConfirm = (finishThisOne) => {
         setIsOpen(true);
         setTaskForFinish(finishThisOne);
+    }
+
+    function capitalizeFirstLetter(string) {
+        let stringSetLowerCase = string.toLowerCase();
+        return stringSetLowerCase.charAt(0).toUpperCase() + stringSetLowerCase.slice(1);
+    }
+
+    const handleOpenViewTask = (viewThisOne) => {
+        setOpenViewModal(true);
+        setOpenTaskAndView(viewThisOne)
     }
 
     const OneTask = ({image, priority, name, description, completeTask}) => {
         return(
             <div className="taskCard">
                 <img src={image?.length !== 0 ? image : defaultImage}/>
-                <span className={priority === "low" ? "priorityLow" : "priorityHigh"}>{priority}</span>
+                <span className={priority.toLowerCase() === "low" ? "priorityLow" : "priorityHigh"}>{capitalizeFirstLetter(priority)}</span>
 
                 <div className="nameAndDescription">
                 <h2 className="taskName">{name}</h2>
                 <p className="taskDescription">{description}</p>
                 </div>
-                <Button buttonText="View Task" customClassName='customStyle' />
+                <Button onClick={() => handleOpenViewTask(completeTask)} buttonText="View Task" customClassName='customStyle' />
                 <Button onClick={() => handleOpenFinishTaskConfirm(completeTask)} buttonText="Finish Task" customClassName="finishTaskButtonStyle" /> 
             </div>
         )
@@ -90,6 +109,11 @@ const Tasks = () => {
                     setNotificationConfig={setNotificationConfig}
                 />
             }
+
+            <OverviewModal 
+            openViewModal={openViewModal}
+            setOpenViewModal={setOpenViewModal}
+            />
 
             <TransitionsModal 
             title="Do you want to finish task?"
