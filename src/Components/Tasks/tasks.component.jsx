@@ -15,9 +15,13 @@ import OverviewModal from "../../Common/OverviewModal/overviewModal.component";
 const Tasks = () => {
     const [allTasks, setAllTasks] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
-    const [openViewModal, setOpenViewModal] = useState(false);
     const [taskForFinish, setTaskForFinish] = useState(null);
-    const [openTaskAndView, setOpenTaskAndView] = useState(null);
+    const [openViewModal, setOpenViewModal] = useState({
+        modalOpen: false,
+        name: "",
+        image: "",
+        description: "",
+    });
     const [notificationConfig, setNotificationConfig] = useState({
         visible: false,
         severity: "",
@@ -64,9 +68,14 @@ const Tasks = () => {
             setIsOpen(false);
         }
 
-    const handleOpenTaskAndView =async () => {
-        const db = fire.firestore();
-        db.collection("tasks/")
+    const handleOpenOverviewModal = (viewThisOne) => {
+        setOpenViewModal({
+            modalOpen: true,
+            name: viewThisOne.name,
+            image: viewThisOne.image,
+            description: viewThisOne.description,
+        });
+
     }
 
 
@@ -80,10 +89,6 @@ const Tasks = () => {
         return stringSetLowerCase.charAt(0).toUpperCase() + stringSetLowerCase.slice(1);
     }
 
-    const handleOpenViewTask = (viewThisOne) => {
-        setOpenViewModal(true);
-        setOpenTaskAndView(viewThisOne)
-    }
 
     const OneTask = ({image, priority, name, description, completeTask}) => {
         return(
@@ -93,9 +98,8 @@ const Tasks = () => {
 
                 <div className="nameAndDescription">
                 <h2 className="taskName">{name}</h2>
-                <p className="taskDescription">{description}</p>
                 </div>
-                <Button onClick={() => handleOpenViewTask(completeTask)} buttonText="View Task" customClassName='customStyle' />
+                <Button onClick={() => handleOpenOverviewModal(completeTask)} buttonText="View Task" customClassName='customStyle' />
                 <Button onClick={() => handleOpenFinishTaskConfirm(completeTask)} buttonText="Finish Task" customClassName="finishTaskButtonStyle" /> 
             </div>
         )
@@ -110,10 +114,12 @@ const Tasks = () => {
                 />
             }
 
+            {openViewModal.modalOpen &&
             <OverviewModal 
             openViewModal={openViewModal}
             setOpenViewModal={setOpenViewModal}
             />
+            }
 
             <TransitionsModal 
             title="Do you want to finish task?"

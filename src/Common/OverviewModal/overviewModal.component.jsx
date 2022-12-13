@@ -7,30 +7,34 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-const OverviewModal = ({openViewModal, setOpenViewModal, name, image, priority, description}) => {
+const OverviewModal = ({openViewModal, setOpenViewModal}) => {
 
   const handleCloseOverviewModal = () => {
-    setOpenViewModal(false);
+    setOpenViewModal({
+        modalOpen: false,
+        name: "",
+        image: "",
+        description: "",
+    });
   };
 
   return (
     <div>
       <Dialog
-        openViewModal={openViewModal}
+        open={openViewModal.modalOpen}
         onClose={handleCloseOverviewModal}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <img src={image} />
+        <img src={openViewModal.image} />
         <DialogTitle id="alert-dialog-title">
-          <h2 className="viewTaskName">{name}</h2>
+          {openViewModal.name}
         </DialogTitle>
         
         <DialogContent>
             <span className="confirmX" onClick={handleCloseOverviewModal}>X</span>
-            <span>{priority}</span>  
             <DialogContentText id="alert-dialog-description">
-            {description}
+            {openViewModal.description}
             </DialogContentText>
         </DialogContent>
         <DialogActions>
