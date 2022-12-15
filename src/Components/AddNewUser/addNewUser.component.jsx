@@ -15,6 +15,7 @@ const AddNewUser = () => {
         name:"",
         position:"",
         status:"",
+        about:"",
     });
     const [isOpen, setIsOpen] = useState(false);
     const [notificationConfig, setNotificationConfig] = useState({
@@ -40,12 +41,14 @@ const AddNewUser = () => {
           position: user.position,
           employed: user.employed,
           status: user.status,
+          about: user.about,
         });
         setUser({
             employed:"",
             name:"",
             position:"",
             status:"",
+            about:"",
         })
         setNotificationConfig({
             visible: true,
@@ -89,6 +92,8 @@ const AddNewUser = () => {
                     
                     
                         <input value={user.status} placeholder="Status" name="status" onChange={addUser}/>
+
+                        <input value={user.about} placeholder="About Me" name="about" onChange={addUser}/>
                     </form>    
                     <Button buttonText="Add New User" onClick={handleConfirmAddNewUser} />
                 </div>

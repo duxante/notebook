@@ -1,0 +1,4 @@
+.userOverview {
+    display:flex;
+    flex-direction: column;
+}

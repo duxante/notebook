@@ -6,6 +6,7 @@ import fire from "../../Utils/firebase.config";
 import Notification from "../../Common/NotificationFolder/notification.component";
 import HolderCentralniDio from "../../Common/HolderCentralniDio/holderCentralniDio.component";
 import TransitionsModal from "../../Common/PopUp/popUp.component";
+import UserOverview from "../../Common/UserOverview/userOverview.component";
 
 
 
@@ -17,6 +18,14 @@ const Users = () => {
       visible: false,
       severity: "",
       text: "",
+  })
+  const [userViewConfig, setUserViewConfig] = useState({
+    isVisible: false,
+    name:"",
+    position: "",
+    about:"",
+    status:"",
+    employed:"",
   })
 
     const fetchUsers = async() => {
@@ -30,6 +39,7 @@ const Users = () => {
             position: userData.position,
             employed: userData.employed,
             status: userData.status,
+            about: userData.about,
             id: user.id,
           }
           return singleUserData;
@@ -64,6 +74,17 @@ const Users = () => {
       setIsOpen(true);
       setUserForDelete(user);
     }
+
+    const handleOpenAboutUser = (userToView) => {
+        setUserViewConfig({
+          isVisible: true,
+          name: userToView.name,
+          position: userToView.position,
+          about: userToView.about,
+          status: userToView.status,
+          employed: userToView.employed,
+        })
+    }
       
     return(
       <>
@@ -73,14 +94,21 @@ const Users = () => {
               setNotificationConfig={setNotificationConfig}
           />
         }
-        
+
+        {userViewConfig.isVisible &&
+        <UserOverview 
+        userViewConfig={userViewConfig}
+        setUserViewConfig={setUserViewConfig}
+        />
+        }
+
         <TransitionsModal 
         title="Do you want to delete user?"
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         onClick={handleDeleteUser}
         />
-
+        
         <HolderCentralniDio>
           <Sidebar />
             <Dashboard mainHeadingTitle="Users">
@@ -94,7 +122,7 @@ const Users = () => {
                 {users.map((user, index) => {
                   return(
                     <div key={index} className="user">
-                    <p key={Math.random()} className="userParagraph">{user.name}</p>
+                    <p key={Math.random()} className="userParagraph" onClick={() => handleOpenAboutUser(user)}>{user.name}</p>
                     <p key={Math.random()} className="userParagraph">{user.position}</p>
                     <p key={Math.random()} className="userParagraph">{user.employed}</p>
                     <p key={Math.random()} className="userParagraph">{user.status}</p>
