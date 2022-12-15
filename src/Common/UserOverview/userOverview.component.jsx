@@ -2,8 +2,8 @@ import "./userOverview.style.css";
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+
 
 const style = {
   position: 'absolute',
@@ -19,7 +19,6 @@ const style = {
 
 const UserOverview = ({userViewConfig, setUserViewConfig}) => {
 
-  console.log(userViewConfig, "user view config in UserOverview component");
   const handleClose = () => {
     setUserViewConfig({
         isVisible: false,
@@ -28,7 +27,7 @@ const UserOverview = ({userViewConfig, setUserViewConfig}) => {
         about:"",
         status:"",
         employed:"",
-      })
+      });
   };
 
   return (
@@ -41,14 +40,16 @@ const UserOverview = ({userViewConfig, setUserViewConfig}) => {
         aria-describedby="keep-mounted-modal-description"
       >
         <Box sx={style}>
+          <span className="userOverviewX" onClick={handleClose}>X</span>  
           <Typography id="keep-mounted-modal-title" variant="h6" component="h2">
-            User CV
+            <h2>User Info</h2>
           </Typography>
-          <p className="userOverview">Name: <span>{userViewConfig.name}</span></p>
-          <p className="userOverview">Position: <span>{userViewConfig.position}</span></p>
-          <p className="userOverview">Employed: <span>{userViewConfig.employed}</span></p>
-          <p className="userOverview">Status: <span>{userViewConfig.status}</span></p>
-          <p className="userOverview">About: <span>{userViewConfig.about}</span></p>
+          <p className="userOverview"><b>Name:</b> <span>{userViewConfig.name}</span></p>
+          <p className="userOverview"><b>Position:</b> <span>{userViewConfig.position}</span></p>
+          <p className="userOverview"><b>Employed:</b> <span>{userViewConfig.employed}</span></p>
+          <p className="userOverview"><b>Status:</b> <span>{userViewConfig.status}</span></p>
+          <p className="userOverview"><b>About:</b> <span>{userViewConfig.about}</span></p>
+          <button className="closeOverview" onClick={handleClose}>Close</button>
         </Box>
       </Modal>
     </div>
