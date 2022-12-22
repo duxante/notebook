@@ -1,10 +1,13 @@
 import "./loginWindow.style.css";
+import {useState } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 import MainHeading from "../../Common/MainHeading/mainHeading.component";
 import Button from "../../Common/ButtonFolder/button.component";
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { TextField } from "@mui/material";
+import Notification from "../../Common/NotificationFolder/notification.component";
+
 
 const passwordPattern = /^(?=.*\d)(?=.*[!@#$%^&*.,=?\-+<>|:;{}\\[\]\\/)(`\\])(?=.*)(?=.*[A-Z]).{8,}$/;
 
@@ -19,66 +22,82 @@ const loginUserScheme = yup.object().shape({
 });
 
 const LoginWindow = () => {
+    const [notificationConfig, setNotificationConfig] = useState({
+        visible: false,
+        severity: "",
+        text: "",
+    })
     const navigate = useNavigate();
     const handleLoginSubmit = (values, onSubmitProps) => {
-        if (values.email === 'admin@admin.com' && values.password === 'admin'){
+        if (values.email === 'admin@admin.com' && values.password === 'S3admin@'){
             onSubmitProps.resetForm();
             navigate('/users');
         } 
         else (
-            alert("Something went wrong, please check your credentials!")
+            setNotificationConfig({
+                visible: true,
+                severity: "error",
+                text: "Something went wrong, please check your credentials!",
+            })
+            
         )
     }
 
     return(
-        <div className="mainLoginHolder">
-            <div className="loginHolder">
-                <MainHeading mainHeadingTitle="Log in" />
-                <div className="formHolder">
-                    <Formik
-                        onSubmit={handleLoginSubmit}
-                        initialValues={initialLoginValues}
-                        validationSchema={loginUserScheme}
-                    >
-                        {({
-                            values,
-                            errors,
-                            touched,
-                            handleBlur,
-                            handleChange,
-                            handleSubmit
-                        }) => (
-                            <form className="addUserForm" onSubmit={handleSubmit}>
-                                <TextField
-                                    label="Email"
-                                    name="email"
-                                    onBlur={handleBlur}
-                                    onChange={handleChange}
-                                    value={values.email}
-                                    error={Boolean(touched.email) && Boolean(errors.email)}
-                                    helperText={touched.email && errors.email}
-                                />
-                                <TextField
-                                    label="Password"
-                                    name="password"
-                                    type="password"
-                                    onBlur={handleBlur}
-                                    onChange={handleChange}
-                                    value={values.password}
-                                    error={Boolean(touched.password) && Boolean(errors.password)}
-                                    helperText={touched.password && errors.password}
-                                />
-                                <Button buttonText="LOGIN" type="submit" />
-                                <p className="orSignUp">Or <Link to="/signUp"> Sign Up</Link></p>
-                                <p className="enjoyLife">enjoy life...</p>
-                                <p className="created">&copy; created by <b>Dux</b></p>      
-                            </form>
-                        )}
-                    </Formik>
+        <>
+            {notificationConfig.visible && <Notification 
+            notificationConfig={notificationConfig}
+            setNotificationConfig={setNotificationConfig}
+            />
+            }
+            <div className="mainLoginHolder">
+                <div className="loginHolder">
+                    <MainHeading mainHeadingTitle="Log in" />
+                    <div className="formHolder">
+                        <Formik
+                            onSubmit={handleLoginSubmit}
+                            initialValues={initialLoginValues}
+                            validationSchema={loginUserScheme}
+                        >
+                            {({
+                                values,
+                                errors,
+                                touched,
+                                handleBlur,
+                                handleChange,
+                                handleSubmit
+                            }) => (
+                                <form className="addUserForm" onSubmit={handleSubmit}>
+                                    <TextField
+                                        label="Email"
+                                        name="email"
+                                        onBlur={handleBlur}
+                                        onChange={handleChange}
+                                        value={values.email}
+                                        error={Boolean(touched.email) && Boolean(errors.email)}
+                                        helperText={touched.email && errors.email}
+                                    />
+                                    <TextField
+                                        label="Password"
+                                        name="password"
+                                        type="password"
+                                        onBlur={handleBlur}
+                                        onChange={handleChange}
+                                        value={values.password}
+                                        error={Boolean(touched.password) && Boolean(errors.password)}
+                                        helperText={touched.password && errors.password}
+                                    />
+                                    <Button buttonText="LOGIN" type="submit" />
+                                    <p className="orSignUp">Or <Link to="/signUp"> Sign Up</Link></p>
+                                    <p className="enjoyLife">enjoy life...</p>
+                                    <p className="created">&copy; created by <b>Dux</b></p>      
+                                </form>
+                            )}
+                        </Formik>
+                    </div>
                 </div>
             </div>
-        </div>
-        
+        </>   
     )
 }
 

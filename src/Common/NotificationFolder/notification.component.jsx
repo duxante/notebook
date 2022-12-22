@@ -21,7 +21,7 @@ const Notification = ({notificationConfig, setNotificationConfig}) => {
 
   return (
     <Stack spacing={2} sx={{ width: '100%' }}>
-      <Snackbar open={notificationConfig.visible} autoHideDuration={2000} onClose={handleClose}>
+      <Snackbar open={notificationConfig.visible} autoHideDuration={4000} onClose={handleClose}>
         <Alert onClose={handleClose} severity={notificationConfig.severity} sx={{ width: '100%' }}>
           {notificationConfig.text}
         </Alert>
