@@ -6,6 +6,8 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { TextField } from "@mui/material";
 
+const passwordPattern = /^(?=.*\d)(?=.*[!@#$%^&*.,=?\-+<>|:;{}\\[\]\\/)(`\\])(?=.*)(?=.*[A-Z]).{8,}$/;
+
 const initialLoginValues = {
     email:"",
     password:""
@@ -13,7 +15,7 @@ const initialLoginValues = {
 
 const loginUserScheme = yup.object().shape({
     email: yup.string().email("Email is invalid").required("Email is required"),
-    password: yup.string().required("Password is required"),
+    password: yup.string().matches(passwordPattern, "Password must contain 1 capital letter, 1 number, 1 special character").required("Password is required").required("Password is required"),
 });
 
 const LoginWindow = () => {
@@ -23,6 +25,9 @@ const LoginWindow = () => {
             onSubmitProps.resetForm();
             navigate('/users');
         } 
+        else (
+            alert("Something went wrong, please check your credentials!")
+        )
     }
 
     return(
