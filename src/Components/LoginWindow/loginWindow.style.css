@@ -38,6 +38,10 @@
     gap: 10px;
 }
 
+.addUserForm input {
+    background-color: white;
+}
+
 .enjoyLife {
     color: #595f63;
     font-style: italic;
