@@ -8,9 +8,10 @@
     flex-wrap: wrap;
     align-content: center;
     height: 49vh;
+    margin: 0px auto;
 }
 
-.addNewUserDataInput label {
+/* .addNewUserDataInput label {
     display: flex;
     justify-content: space-between;
     gap: 15px;
@@ -32,10 +33,18 @@
     color: gray;
     border: 1px solid rgb(197 197 197);
     border-radius: 5px;
-}
+} */
 
 .addNewUserForm {
-    gap: 10px;
     display: flex;
     flex-direction: column;
+    max-width: 500px;
+    width: 100%;
+    justify-content: flex-end;
+    margin: 30px auto 0px;
+    gap: 10px;
+}
+
+.addNewUserForm input {
+    background-color: white;
 }

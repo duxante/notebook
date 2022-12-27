@@ -21,39 +21,22 @@ const initialAddNewUserValues = {
 }
 
 const addNewUserScheme = yup.object().shape({
-    name: yup.string().name("Name is invalid").required("Name is required"),
-    position: yup.string().position().required("Position is required"),
-    employed: yup.string().employed().required("Date of employment is required"),
-    status: yup.string().status().required("Yes or No is required"),
-    aboutMe: yup.string().aboutMe().required("Short description is required"),
+    name: yup.string().required("Name is required"),
+    position: yup.string().required("Position is required"),
+    employed: yup.string().required("Date of employment is required"),
+    status: yup.string().required("Yes or No is required"),
+    aboutMe: yup.string().required("Short description is required"),
 })
 
 const AddNewUser = () => {
-    const [user, setUser] = useState({
-        employed:"",
-        name:"",
-        position:"",
-        status:"",
-        about:"",
-    });
     const [isOpen, setIsOpen] = useState(false);
     const [notificationConfig, setNotificationConfig] = useState({
         visible: false,
         severity: "",
         text: "",
-    })
-    
-
-    const addUser = (e) => {
-        e.preventDefault();
-        setUser({
-            ...user,
-            [e.target.name]: e.target.value
-        })
-    }
-
-    const handleSubmitUser = (e) => {
-        e.preventDefault();
+    });
+    const handleSubmitUser = (values, onSubmitProps) => {
+        /* e.preventDefault();
         const db = fire.firestore();
         db.collection("users/").add({
           name: user.name,
@@ -74,8 +57,8 @@ const AddNewUser = () => {
             severity: "success",
             text: "User added!",
         })
-        setIsOpen(false);
-    };
+        setIsOpen(false); */
+    }; 
 
     const handleConfirmAddNewUser = () => {
         setIsOpen(true);
@@ -100,7 +83,6 @@ const AddNewUser = () => {
             <Dashboard mainHeadingTitle="Add New User">
 
                 <div className="addNewUserDataInput">
-                    <form className="addNewUserForm">
                       {/*   <input value={user.name} placeholder="Name" name="name" onChange={addUser}/>
                 
                     
@@ -114,7 +96,7 @@ const AddNewUser = () => {
 
                         <input value={user.about} placeholder="About Me" name="about" onChange={addUser}/> */}
                     <Formik
-                            onSubmit={handleAddNewUser}
+                            onSubmit={handleConfirmAddNewUser}
                             initialValues={initialAddNewUserValues}
                             validationSchema={addNewUserScheme}
                         >
@@ -126,11 +108,51 @@ const AddNewUser = () => {
                                 handleChange,
                                 handleSubmit
                             }) => (
-                                
+                                <form className="addNewUserForm">
+                                    <TextField 
+                                        label="Name"
+                                        name="name"
+                                        onBlur={handleBlur}
+                                        value={values.name}
+                                        error={Boolean(touched.name) && Boolean(errors.name)}
+                                        helperText={touched.name && errors.name}
+                                    />
+                                    <TextField 
+                                        label="Position"
+                                        name="position"
+                                        onBlur={handleBlur}
+                                        value={values.position}
+                                        error={Boolean(touched.position) && Boolean(errors.position)}
+                                        helperText={touched.position && errors.position}
+                                    />
+                                    <TextField 
+                                        label="Employed"
+                                        name="employed"
+                                        onBlur={handleBlur}
+                                        value={values.employed}
+                                        error={Boolean(touched.employed) && Boolean(errors.employed)}
+                                        helperText={touched.employed && errors.employed}
+                                    />
+                                    <TextField 
+                                        label="Status"
+                                        name="status"
+                                        onBlur={handleBlur}
+                                        value={values.status}
+                                        error={Boolean(touched.status) && Boolean(errors.status)}
+                                        helperText={touched.status && errors.status}
+                                    />
+                                    <TextField 
+                                        label="About me"
+                                        name="aboutMe"
+                                        onBlur={handleBlur}
+                                        value={values.aboutMe}
+                                        error={Boolean(touched.aboutMe) && Boolean(errors.aboutMe)}
+                                        helperText={touched.aboutMe && errors.aboutMe}
+                                    />
+                                    <Button buttonText="Add New User" onClick={handleConfirmAddNewUser} />
+                                </form>
                             )}    
                     </Formik>    
-                    </form>    
-                    <Button buttonText="Add New User" onClick={handleConfirmAddNewUser} />
                 </div>
             </Dashboard>
         </HolderCentralniDio>
