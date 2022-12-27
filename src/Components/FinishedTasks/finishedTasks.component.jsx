@@ -8,11 +8,18 @@ import Notification from "../../Common/NotificationFolder/notification.component
 import Button from "../../Common/ButtonFolder/button.component";
 import defaultImage from "../../imagesFolder/defaultImage.svg";
 import TransitionsModal from "../../Common/PopUp/popUp.component";
+import OverviewModal from "../../Common/OverviewModal/overviewModal.component";
 
 const FinishedTasks = () => {
     const [finishedTasks, setFinishedTasks] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
     const [restoreFinishedTask, setRestoreFinishedTask] = useState(null);
+    const [openViewModal, setOpenViewModal] = useState({
+        modalOpen: false,
+        name: "",
+        image: "",
+        description: "",
+    });
     const [notificationConfig, setNotificationConfig] = useState({
         visible: false,
         severity: "",
@@ -41,6 +48,15 @@ const FinishedTasks = () => {
         fetchFinishedTasks();
     }, []);
 
+    const handleViewFinishedTask = (viewFinishedTask) => {
+        setOpenViewModal({
+            modalOpen: true,
+            name: viewFinishedTask.name,
+            image: viewFinishedTask.image,
+            description: viewFinishedTask.description,
+        });
+    }
+
     const OneFinishedTask = ({name, description, image, id, priority, completeTask}) => {
         return(
             <div className="finishedTaskCard">
@@ -51,7 +67,7 @@ const FinishedTasks = () => {
                     <h2 className="finishedTaskName">{name}</h2>
                     <p className="finishedTaskDescription">{description}</p>
                 </div>
-                <Button buttonText="View Task" customClassName="customStyle" />
+                <Button onClick={() => handleViewFinishedTask(completeTask)} buttonText="View Task" customClassName="customStyle" />
                 <Button onClick={() => handleOpenRestoreTaskConfirm(completeTask)} buttonText="Restore Task" customClassName="restoreFinishedTaskButtonStyle" />
             </div>
         )
@@ -98,6 +114,12 @@ const FinishedTasks = () => {
                 <Notification         
                     notificationConfig={notificationConfig}
                     setNotificationConfig={setNotificationConfig}
+                />
+            }
+            {openViewModal.modalOpen &&
+                <OverviewModal 
+                    openViewModal={openViewModal}
+                    setOpenViewModal={setOpenViewModal}
                 />
             }
             <TransitionsModal
