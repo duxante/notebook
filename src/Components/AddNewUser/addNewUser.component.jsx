@@ -29,39 +29,45 @@ const addNewUserScheme = yup.object().shape({
 })
 
 const AddNewUser = () => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [modalConfig, setModalConfig] = useState({
+        visible: false,
+        values: null,
+        submitProps: null
+    });
     const [notificationConfig, setNotificationConfig] = useState({
         visible: false,
         severity: "",
         text: "",
     });
-    const handleSubmitUser = (values, onSubmitProps) => {
-        /* e.preventDefault();
+    const handleSubmitUser = () => {
+        const { values } = modalConfig;
         const db = fire.firestore();
         db.collection("users/").add({
-          name: user.name,
-          position: user.position,
-          employed: user.employed,
-          status: user.status,
-          about: user.about,
+          name: values.name,
+          position: values.position,
+          employed: values.employed,
+          status: values.status,
+          about: values.aboutMe,
         });
-        setUser({
-            employed:"",
-            name:"",
-            position:"",
-            status:"",
-            about:"",
-        })
         setNotificationConfig({
             visible: true,
             severity: "success",
             text: "User added!",
         })
-        setIsOpen(false); */
+        setModalConfig({
+            visible: false,
+            values: null,
+            submitProps: null
+        }); 
+        modalConfig.submitProps.resetForm();
     }; 
 
-    const handleConfirmAddNewUser = () => {
-        setIsOpen(true);
+    const handleConfirmAddNewUser = (values, onSubmitProps) => {
+        setModalConfig({
+            visible: true,
+            values: values,
+            submitProps: onSubmitProps,
+        });
     }
 
     return(
@@ -73,9 +79,9 @@ const AddNewUser = () => {
         }
 
         <TransitionsModal 
-        title="Add user?"
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
+        title="Add new user?"
+        isOpen={modalConfig.visible}
+        setIsOpen={setModalConfig}
         onClick={handleSubmitUser}
         />
         <HolderCentralniDio>
@@ -83,18 +89,6 @@ const AddNewUser = () => {
             <Dashboard mainHeadingTitle="Add New User">
 
                 <div className="addNewUserDataInput">
-                      {/*   <input value={user.name} placeholder="Name" name="name" onChange={addUser}/>
-                
-                    
-                        <input value={user.position} placeholder="Position" name="position" onChange={addUser}/>
-                    
-                    
-                        <input value={user.employed} placeholder="Employed" name="employed" onChange={addUser}/>
-                    
-                    
-                        <input value={user.status} placeholder="Status" name="status" onChange={addUser}/>
-
-                        <input value={user.about} placeholder="About Me" name="about" onChange={addUser}/> */}
                     <Formik
                             onSubmit={handleConfirmAddNewUser}
                             initialValues={initialAddNewUserValues}
@@ -108,7 +102,7 @@ const AddNewUser = () => {
                                 handleChange,
                                 handleSubmit
                             }) => (
-                                <form className="addNewUserForm">
+                                <form className="addNewUserForm" onSubmit={handleSubmit}>
                                     <TextField 
                                         label="Name"
                                         name="name"
@@ -116,6 +110,7 @@ const AddNewUser = () => {
                                         value={values.name}
                                         error={Boolean(touched.name) && Boolean(errors.name)}
                                         helperText={touched.name && errors.name}
+                                        onChange={handleChange}
                                     />
                                     <TextField 
                                         label="Position"
@@ -124,6 +119,7 @@ const AddNewUser = () => {
                                         value={values.position}
                                         error={Boolean(touched.position) && Boolean(errors.position)}
                                         helperText={touched.position && errors.position}
+                                        onChange={handleChange}
                                     />
                                     <TextField 
                                         label="Employed"
@@ -132,6 +128,7 @@ const AddNewUser = () => {
                                         value={values.employed}
                                         error={Boolean(touched.employed) && Boolean(errors.employed)}
                                         helperText={touched.employed && errors.employed}
+                                        onChange={handleChange}
                                     />
                                     <TextField 
                                         label="Status"
@@ -140,6 +137,7 @@ const AddNewUser = () => {
                                         value={values.status}
                                         error={Boolean(touched.status) && Boolean(errors.status)}
                                         helperText={touched.status && errors.status}
+                                        onChange={handleChange}
                                     />
                                     <TextField 
                                         label="About me"
@@ -148,8 +146,9 @@ const AddNewUser = () => {
                                         value={values.aboutMe}
                                         error={Boolean(touched.aboutMe) && Boolean(errors.aboutMe)}
                                         helperText={touched.aboutMe && errors.aboutMe}
+                                        onChange={handleChange}
                                     />
-                                    <Button buttonText="Add New User" onClick={handleConfirmAddNewUser} />
+                                    <Button buttonText="Add New User" type="submit" />
                                 </form>
                             )}    
                     </Formik>    
