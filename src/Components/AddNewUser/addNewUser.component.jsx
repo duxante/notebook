@@ -82,7 +82,7 @@ const AddNewUser = () => {
 
                 <div className="addNewUserDataInput">
                     <form className="addNewUserForm">
-                        <input value={user.name} placeholder="Name" name="name" onChange={addUser}/>
+                      {/*   <input value={user.name} placeholder="Name" name="name" onChange={addUser}/>
                 
                     
                         <input value={user.position} placeholder="Position" name="position" onChange={addUser}/>
@@ -93,7 +93,7 @@ const AddNewUser = () => {
                     
                         <input value={user.status} placeholder="Status" name="status" onChange={addUser}/>
 
-                        <input value={user.about} placeholder="About Me" name="about" onChange={addUser}/>
+                        <input value={user.about} placeholder="About Me" name="about" onChange={addUser}/> */}
                     </form>    
                     <Button buttonText="Add New User" onClick={handleConfirmAddNewUser} />
                 </div>
