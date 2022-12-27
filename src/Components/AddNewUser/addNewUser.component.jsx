@@ -7,7 +7,26 @@ import Dashboard from "../../Common/DashboardFolder/dashboard.component";
 import Notification from "../../Common/NotificationFolder/notification.component";
 import HolderCentralniDio from "../../Common/HolderCentralniDio/holderCentralniDio.component";
 import TransitionsModal from "../../Common/PopUp/popUp.component";
+import { TextField } from "@mui/material";
+import * as yup from 'yup';
+import { Formik } from "formik";
 
+
+const initialAddNewUserValues = {
+    name:"",
+    position:"",
+    employed:"",
+    status:"",
+    aboutMe:""
+}
+
+const addNewUserScheme = yup.object().shape({
+    name: yup.string().name("Name is invalid").required("Name is required"),
+    position: yup.string().position().required("Position is required"),
+    employed: yup.string().employed().required("Date of employment is required"),
+    status: yup.string().status().required("Yes or No is required"),
+    aboutMe: yup.string().aboutMe().required("Short description is required"),
+})
 
 const AddNewUser = () => {
     const [user, setUser] = useState({
@@ -94,6 +113,22 @@ const AddNewUser = () => {
                         <input value={user.status} placeholder="Status" name="status" onChange={addUser}/>
 
                         <input value={user.about} placeholder="About Me" name="about" onChange={addUser}/> */}
+                    <Formik
+                            onSubmit={handleAddNewUser}
+                            initialValues={initialAddNewUserValues}
+                            validationSchema={addNewUserScheme}
+                        >
+                            {({
+                                values,
+                                errors,
+                                touched,
+                                handleBlur,
+                                handleChange,
+                                handleSubmit
+                            }) => (
+                                
+                            )}    
+                    </Formik>    
                     </form>    
                     <Button buttonText="Add New User" onClick={handleConfirmAddNewUser} />
                 </div>
