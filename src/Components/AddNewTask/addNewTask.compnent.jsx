@@ -7,56 +7,66 @@ import "./addNewTask.style.css";
 import Notification from "../../Common/NotificationFolder/notification.component";
 import HolderCentralniDio from "../../Common/HolderCentralniDio/holderCentralniDio.component";
 import TransitionsModal from "../../Common/PopUp/popUp.component";
+import { TextField } from "@mui/material";
+import * as yup from 'yup';
+import { Formik } from "formik";
 
 
+
+const initialAddNewTaskValues = {
+    taskName:"",
+    taskImage:"",
+    taskPriority:"",
+    taskDescription:"",
+}
+
+const addNewTaskScheme = yup.object().shape({
+    taskName: yup.string().required("Task Name is required"),
+    taskImage: yup.string().required("Task Image is required"),
+    taskPriority: yup.string().required("Task Priority is required"),
+    taskDescription: yup.string().required("Task Description is required"),
+})
 
 const AddNewTask = () => {
-    const [task, setTask] = useState({
-        taskImage:"",
-        taskPriority:"",
-        taskName:"",
-        taskDescription:"",
+    const [modalConfig, setModalConfig] = useState({
+        visible: false,
+        values: null,
+        submitProps: null
     });
-    const [isOpen, setIsOpen] = useState(false);
     const [notificationConfig, setNotificationConfig] = useState({
         visible: false,
         severity: "",
         text: "",
     })
 
-    const addTask = (e) => {
-        e.preventDefault();
-        setTask({
-            ...task,
-            [e.target.name]: e.target.value
-        })
-    }
-
     const handleSubmitTask = (e) => {
-        e.preventDefault();
+        const { values } = modalConfig;
         const db = fire.firestore();
         db.collection("tasks/").add({
-            image: task.taskImage,
-            priority: task.taskPriority,
-            name: task.taskName,
-            description: task.taskDescription,
+            image: values.taskImage,
+            priority: values.taskPriority,
+            name: values.taskName,
+            description: values.taskDescription,
         });
-        setTask({
-        taskImage:"",
-        taskPriority:"",
-        taskName:"",
-        taskDescription:"",
+        setModalConfig({
+            visible: false,
+            values: null,
+            submitProps: null
         })
         setNotificationConfig({
             visible: true,
             severity: "success",
             text: "Task successfully created!",
         })
-        setIsOpen(false);
+        modalConfig.submitProps.resetForm(); 
     };
 
-    const handleConfirmAddNewTask = () => {
-        setIsOpen(true);
+    const handleConfirmAddNewTask = (values, onSubmitProps) => {
+        setModalConfig({
+            visible: true,
+            values: values,
+            submitProps: onSubmitProps,
+        });
 
     }
 
@@ -69,24 +79,68 @@ const AddNewTask = () => {
         }
         <TransitionsModal 
         title="Add new task?"
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
+        isOpen={modalConfig.visible}
+        setIsOpen={setModalConfig}
         onClick={handleSubmitTask}
         />
         <HolderCentralniDio>
             <Sidebar />
                 <Dashboard mainHeadingTitle="Add New Task">
                     <div className="addNewTaskDataInput">
-                        <form className="addNewTaskForm">
-                            <input value={task.taskImage} placeholder="Task Image" name="taskImage" onChange={addTask}/>
-                        
-                            <input value={task.taskPriority} placeholder="Task Priority" name="taskPriority" onChange={addTask}/>
-                        
-                            <input value={task.taskName} placeholder="Task Name" name="taskName" onChange={addTask}/>
-                        
-                            <input value={task.taskDescription} placeholder="Task Description" name="taskDescription" onChange={addTask}/>
-                        </form>
-                        <Button buttonText="Add New Task" onClick={handleConfirmAddNewTask}/>
+                        <Formik
+                            onSubmit={handleConfirmAddNewTask}
+                            initialValues={initialAddNewTaskValues}
+                            validationSchema={addNewTaskScheme}
+                        >
+                            {({
+                                values,
+                                errors,
+                                touched,
+                                handleBlur,
+                                handleChange,
+                                handleSubmit
+                            }) => (
+                                <form className="addNewTaskForm" onSubmit={handleSubmit}>
+                                    <TextField 
+                                    label="Task Image"
+                                    name="taskImage"
+                                    onBlur={handleBlur}
+                                    value={values.taskImage}
+                                    error={Boolean(touched.taskImage) && Boolean(errors.taskImage)}
+                                    helperText={touched.taskImage && errors.taskImage}
+                                    onChange={handleChange}
+                                    />
+                                    <TextField 
+                                    label="Task Name"
+                                    name="taskName"
+                                    onBlur={handleBlur}
+                                    value={values.taskName}
+                                    error={Boolean(touched.taskName) && Boolean(errors.taskName)}
+                                    helperText={touched.taskName && errors.taskName}
+                                    onChange={handleChange}
+                                    />
+                                    <TextField 
+                                    label="Task Priority"
+                                    name="taskPriority"
+                                    onBlur={handleBlur}
+                                    value={values.taskPriority}
+                                    error={Boolean(touched.taskPriority) && Boolean(errors.taskPriority)}
+                                    helperText={touched.taskPriority && errors.taskPriority}
+                                    onChange={handleChange}
+                                    />
+                                    <TextField 
+                                    label="Task Description"
+                                    name="taskDescription"
+                                    onBlur={handleBlur}
+                                    value={values.taskDescription}
+                                    error={Boolean(touched.taskDescription) && Boolean(errors.taskDescription)}
+                                    helperText={touched.taskDescription && errors.taskDescription}
+                                    onChange={handleChange}
+                                    />
+                                    <Button buttonText="Add New Task" type="submit"/>
+                                </form>
+                            )}
+                        </Formik>
                     </div>
                 </Dashboard>
         </HolderCentralniDio>

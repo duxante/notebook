@@ -93,7 +93,7 @@ const AddNewUser = () => {
                             onSubmit={handleConfirmAddNewUser}
                             initialValues={initialAddNewUserValues}
                             validationSchema={addNewUserScheme}
-                        >
+                    >
                             {({
                                 values,
                                 errors,
