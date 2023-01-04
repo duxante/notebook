@@ -11,30 +11,6 @@
     margin: 0px auto;
 }
 
-/* .addNewUserDataInput label {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-    align-items: center;
-    margin: 10px auto;
-    font-size: 18px;
-    max-width: 450px;
-    width: 100%;
-}
-
-.addNewUserDataInput input {
-    max-width: 450px;
-    width: 100%;
-    text-indent: 10px;
-    font-style: italic;
-    padding: 10px 0px;
-    font-size: 15px;
-    font-weight: 500;
-    color: gray;
-    border: 1px solid rgb(197 197 197);
-    border-radius: 5px;
-} */
-
 .addNewUserForm {
     display: flex;
     flex-direction: column;
