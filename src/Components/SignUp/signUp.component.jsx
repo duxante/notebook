@@ -55,7 +55,10 @@ const SignUp = () => {
             submitProps: null,
         });
         signUpModal.submitProps.resetForm();
-        navigate("/tasks");
+        setTimeout(() => {
+            navigate("/tasks");
+          }, 3000);
+        
     };
     const handleConfirmSignUpUser = (values, onSubmitProps) => {
         setSignUpModal({
