@@ -86,58 +86,58 @@ const SignUp = () => {
 
         <div className="mainSignUpholder">
             <div className="signUpHolder">
-                <MainHeading 
-                    mainHeadingTitle='Sign Up'
-                />
-                    <Formik
-                        onSubmit={handleConfirmSignUpUser}
-                        initialValues={initialSignUpValues}
-                        validationSchema={signUpScheme}
-                    >
-                        {({
-                            values,
-                            errors,
-                            touched,
-                            handleBlur,
-                            handleChange,
-                            handleSubmit
-                        }) => (
-                            <form className="signUpForm" onSubmit={handleSubmit}>
-                                <TextField 
-                                    label="Name"
-                                    name="name"
-                                    onBlur={handleBlur}
-                                    onChange={handleChange}
-                                    value={values.name}
-                                    error={Boolean(touched.name) && Boolean(errors.name)}
-                                    helperText={touched.name && errors.name}
-                                />
-                                <TextField 
-                                    label="Email"
-                                    name="email"
-                                    onBlur={handleBlur}
-                                    onChange={handleChange}
-                                    value={values.email}
-                                    error={Boolean(touched.email) && Boolean(errors.email)}
-                                    helperText={touched.email && errors.email}
-                                />
-                                <TextField 
-                                    label="Password"
-                                    name="password"
-                                    type="password"
-                                    onBlur={handleBlur}
-                                    onChange={handleChange}
-                                    value={values.password}
-                                    error={Boolean(touched.password) && Boolean(errors.password)}
-                                    helperText={touched.password && errors.password}
-                                />
-                                <Button buttonText="Sign Up" type="submit"/>
-                                <p className="backToLogin">Back To <Link to="/login"> Login</Link></p>
-                                <p className="enjoyLife">enjoy life...</p>
-                                <p className="created">&copy; created by <b>Dux</b></p> 
-                            </form>
-                        )}
-                    </Formik>
+                <MainHeading mainHeadingTitle='Sign Up' />
+                    <div className="formHolder">
+                        <Formik
+                            onSubmit={handleConfirmSignUpUser}
+                            initialValues={initialSignUpValues}
+                            validationSchema={signUpScheme}
+                        >
+                            {({
+                                values,
+                                errors,
+                                touched,
+                                handleBlur,
+                                handleChange,
+                                handleSubmit
+                            }) => (
+                                <form className="signUpForm" onSubmit={handleSubmit}>
+                                    <TextField 
+                                        label="Name"
+                                        name="name"
+                                        onBlur={handleBlur}
+                                        onChange={handleChange}
+                                        value={values.name}
+                                        error={Boolean(touched.name) && Boolean(errors.name)}
+                                        helperText={touched.name && errors.name}
+                                    />
+                                    <TextField 
+                                        label="Email"
+                                        name="email"
+                                        onBlur={handleBlur}
+                                        onChange={handleChange}
+                                        value={values.email}
+                                        error={Boolean(touched.email) && Boolean(errors.email)}
+                                        helperText={touched.email && errors.email}
+                                    />
+                                    <TextField 
+                                        label="Password"
+                                        name="password"
+                                        type="password"
+                                        onBlur={handleBlur}
+                                        onChange={handleChange}
+                                        value={values.password}
+                                        error={Boolean(touched.password) && Boolean(errors.password)}
+                                        helperText={touched.password && errors.password}
+                                    />
+                                    <Button buttonText="Sign Up" type="submit"/>
+                                    <p className="backToLogin">Back To <Link to="/login"> Login</Link></p>
+                                    <p className="enjoyLife">enjoy life...</p>
+                                    <p className="created">&copy; created by <b>Dux</b></p> 
+                                </form>
+                            )}
+                        </Formik>
+                    </div>
                 </div> 
             </div>
         </>    
