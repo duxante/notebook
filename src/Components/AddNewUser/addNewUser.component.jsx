@@ -53,7 +53,7 @@ const AddNewUser = () => {
             visible: true,
             severity: "success",
             text: "User added!",
-        })
+        });
         setModalConfig({
             visible: false,
             values: null,

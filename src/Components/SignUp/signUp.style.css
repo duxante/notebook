@@ -22,6 +22,12 @@
     box-shadow: rgb(0 0 0 / 24%) 8px 12px 8px 2px;
 }
 
+.formHolder {
+    width: 100%;
+    max-width: 90%;
+    margin: 0px auto;
+}
+
 .signUpForm {
     display: flex;
     flex-direction: column;
@@ -29,30 +35,11 @@
     width: 100%;
     justify-content: flex-end;
     margin: 30px auto 0px;
-}
-
-.signUpForm label {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-    align-items: center;
-    margin: 10px auto;
-    font-size: 18px;
-    max-width: 450px;
-    width: 100%;
+    gap: 10px;
 }
 
 .signUpForm input {
-    max-width: 450px;
-    width: 100%;
-    text-indent: 10px;
-    font-style: italic;
-    padding: 10px 0px;
-    font-size: 15px;
-    font-weight: 500;
-    color: gray;
-    border: 1px solid rgb(197 197 197);
-    border-radius: 5px;
+    background-color: white;
 }
 
 .created {
@@ -78,6 +65,7 @@
 .backToLogin {
     margin: 0;
     font-weight: bold;
+    text-align: center;
 }
 
 .backToLogin a {
