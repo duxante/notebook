@@ -14,18 +14,21 @@ import fire from "../../Utils/firebase.config";
 const passwordPattern = /^(?=.*\d)(?=.*[!@#$%^&*.,=?\-+<>|:;{}\\[\]\\/)(`\\])(?=.*)(?=.*[A-Z]).{8,}$/;
 
 const initialSignUpValues = {
-    name:"",
+    firstName:"",
+    lastName:"",
     email:"",
     password:""
 };
 
 const signUpScheme = yup.object().shape({
-    name: yup.string().required("Name and Surname is required"),
+    lastName: yup.string().required("Last name is required"),
+    firstName: yup.string().required("First name is required"),
     email: yup.string().email("Email is invalid").required("Email is required"),
     password: yup.string().matches(passwordPattern, "Password must contain 1 capital letter, 1 number, 1 special character").required("Password is required")
 });
 
 const SignUp = () => {
+    const navigate = useNavigate();
     const [signUpModal, setSignUpModal] = useState({
         visible: false,
         values: null,
@@ -39,10 +42,11 @@ const SignUp = () => {
     const handleSubmitSignUp = () => {
         const { values } = signUpModal;
         const db = fire.firestore();
-        db.collection("users/").add({
-            name: values.name,
+        db.collection("registeredUsers/").add({
+            firstName: values.firstName,
+            lastName: values.lastName,
             email: values.email,
-            /* password: values.password */
+            password: values.password
         });
         setNotificationConfig({
             visible: true,
@@ -61,14 +65,13 @@ const SignUp = () => {
         
     };
     const handleConfirmSignUpUser = (values, onSubmitProps) => {
+        console.log(values, "values");
         setSignUpModal({
             visible: true,
             values: values,
             submitProps: onSubmitProps,
         });
     };
-
-    const navigate = useNavigate();
 
 
 
@@ -106,13 +109,22 @@ const SignUp = () => {
                             }) => (
                                 <form className="signUpForm" onSubmit={handleSubmit}>
                                     <TextField 
-                                        label="Name"
-                                        name="name"
+                                        label="First Name"
+                                        name="firstName"
                                         onBlur={handleBlur}
                                         onChange={handleChange}
-                                        value={values.name}
-                                        error={Boolean(touched.name) && Boolean(errors.name)}
-                                        helperText={touched.name && errors.name}
+                                        value={values.firstName}
+                                        error={Boolean(touched.firstName) && Boolean(errors.firstName)}
+                                        helperText={touched.firstName && errors.firstName}
+                                    />
+                                    <TextField 
+                                        label="Last Name"
+                                        name="lastName"
+                                        onBlur={handleBlur}
+                                        onChange={handleChange}
+                                        value={values.lastName}
+                                        error={Boolean(touched.lastName) && Boolean(errors.lastName)}
+                                        helperText={touched.lastName && errors.lastName}
                                     />
                                     <TextField 
                                         label="Email"
