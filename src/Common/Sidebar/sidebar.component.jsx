@@ -4,6 +4,7 @@ import "./sidebar.style.css";
 const Sidebar = () => {
 
     const navigate = useNavigate();
+    const role = localStorage.getItem("role");
 
     return(
         <div className="sidebar">
@@ -21,11 +22,13 @@ const Sidebar = () => {
                         <h2>Users</h2>
                     </div>    
                     </div>
+                    {role === "superAdmin" &&
+                    <>
                     <div className="shortcuts">
-                        <div onClick={() => navigate('/addNewUser')} className="sidebarButton">
+                    <div onClick={() => navigate('/addNewUser')} className="sidebarButton">
                         <img src="https://www.freeiconspng.com/thumbs/account-icon/account-icon-17.png"/>
                         <h2>Add New User</h2>
-                        </div>
+                    </div>
                     </div>
                     <div className="shortcuts">
                         <div onClick={() => navigate('/addNewTask')} className="sidebarButton">
@@ -33,6 +36,8 @@ const Sidebar = () => {
                         <h2>Add New Task</h2>
                         </div>
                     </div>
+                    </>
+                    }
                     <div className="shortcuts">
                         <div onClick={() => navigate('/tasks')} className="sidebarButton">
                         <img src="https://icons-for-free.com/download-icon-description+outline+problem+task+tasks+taskstroke+icon-1320168114572144822_256.ico"/>
