@@ -38,7 +38,7 @@
     max-width: 300px;
     width: 100%;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     margin: 10px -15px;
     font-size: 20px;
     font-weight: bolder;
