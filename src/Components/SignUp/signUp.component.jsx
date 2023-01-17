@@ -46,7 +46,8 @@ const SignUp = () => {
             firstName: values.firstName,
             lastName: values.lastName,
             email: values.email,
-            password: values.password
+            password: values.password,
+            role: "user"
         });
         setNotificationConfig({
             visible: true,
@@ -60,7 +61,7 @@ const SignUp = () => {
         });
         signUpModal.submitProps.resetForm();
         setTimeout(() => {
-            navigate("/tasks");
+            navigate("/login");
           }, 3000);
         
     };
