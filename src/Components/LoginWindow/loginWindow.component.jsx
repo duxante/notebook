@@ -39,7 +39,10 @@ const LoginWindow = () => {
         });
         console.log(registeredUsers, "registeredUsers");
         if (values.email === registeredUsers[0].email && values.password === registeredUsers[0].password){
-            localStorage.setItem("role", registeredUsers[0].role);
+            localStorage.setItem("userData", JSON.stringify({
+                "role": registeredUsers[0].role,
+                "firstName": registeredUsers[0].firstName
+            }));
             onSubmitProps.resetForm();
             navigate('/users');
         } 

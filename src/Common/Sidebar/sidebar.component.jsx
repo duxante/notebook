@@ -5,14 +5,15 @@ const Sidebar = () => {
 
     const navigate = useNavigate();
     const role = localStorage.getItem("role");
-    const notebookOwner = localStorage.getItem("firstName");
+    const notebookOwner = JSON.parse(localStorage.getItem("userData"));
+    console.log (notebookOwner, "notebookOwner");
 
     return(
         <div className="sidebar">
                 <div className="personalNotebook">
                     <div className="sidebarButton">    
                     <img src="https://i.pinimg.com/originals/c2/46/eb/c246ebe54278ac230d528e8bd64d6109.png"/>
-                    <p>{notebookOwner} notebook</p>
+                    <p>{notebookOwner.firstName} notebook</p>
 
                     </div>
                 </div>
