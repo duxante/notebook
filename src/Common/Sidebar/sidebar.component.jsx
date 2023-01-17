@@ -4,7 +4,6 @@ import "./sidebar.style.css";
 const Sidebar = () => {
 
     const navigate = useNavigate();
-    const role = localStorage.getItem("role");
     const notebookOwner = JSON.parse(localStorage.getItem("userData"));
     console.log (notebookOwner, "notebookOwner");
 
@@ -18,7 +17,7 @@ const Sidebar = () => {
                     </div>
                 </div>
                 <div className="mobile-sidebar">    
-                {role === "superAdmin" &&
+                {notebookOwner.role === "superAdmin" &&
                 <>
                     <div className="shortcuts">
                     <div onClick={() => navigate('/users')} className="sidebarButton">
