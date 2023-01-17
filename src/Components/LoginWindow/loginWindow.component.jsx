@@ -1,3 +1,4 @@
+import fire from "../../Utils/firebase.config"
 import "./loginWindow.style.css";
 import {useState } from 'react';
 import { useNavigate, Link } from "react-router-dom";
@@ -28,8 +29,17 @@ const LoginWindow = () => {
         text: "",
     })
     const navigate = useNavigate();
-    const handleLoginSubmit = (values, onSubmitProps) => {
-        if (values.email === 'admin@admin.com' && values.password === 'S3admin@'){
+    const handleLoginSubmit = async(values, onSubmitProps) => {
+        const db = fire.firestore();
+        const response = db.collection("registeredUsers");
+        const data = await response.get();
+        const registeredUsers = data.docs.map((user) => {
+            const registeredUserData = user.data();
+            return registeredUserData;
+        });
+        console.log(registeredUsers, "registeredUsers");
+        if (values.email === registeredUsers[0].email && values.password === registeredUsers[0].password){
+            localStorage.setItem("role", registeredUsers[0].role);
             onSubmitProps.resetForm();
             navigate('/users');
         } 
