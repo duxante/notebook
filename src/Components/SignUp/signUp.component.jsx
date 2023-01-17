@@ -39,7 +39,7 @@ const SignUp = () => {
         severity:"",
         text:""
     });
-    const handleSubmitSignUp = async(values, onSubmitProps) => {
+    const handleSubmitSignUp = () => {
         const { values } = signUpModal;
         const db = fire.firestore();
         db.collection("registeredUsers/").add({
@@ -48,32 +48,29 @@ const SignUp = () => {
             email: values.email,
             password: values.password
         });
-
-        if (values.email === registeredUsers[0].email && values.password === registeredUsers[0].password){ 
-            localStorage.setItem("firstName", registeredUsers[0].firstName);
-            setNotificationConfig({
-                visible: true,
-                severity: "success",
-                text: "User successfully signed up!"
-            });
-            setSignUpModal({
-                visible: false,
-                values: null,
-                submitProps: null,
-            });
-            signUpModal.submitProps.resetForm();
-            setTimeout(() => {
-                navigate("/tasks");
-            }, 3000);
-        }
-        else (
-            setNotificationConfig({
-                visible: true,
-                severity: "error",
-                text: "Something went wrong, please check your credentials!",
-            })
-            
-        ) 
+        setNotificationConfig({
+            visible: true,
+            severity: "success",
+            text: "User successfully signed up!"
+        });
+        setSignUpModal({
+            visible: false,
+            values: null,
+            submitProps: null,
+        });
+        signUpModal.submitProps.resetForm();
+        setTimeout(() => {
+            navigate("/tasks");
+          }, 3000);
+        
+    };
+    const handleConfirmSignUpUser = (values, onSubmitProps) => {
+        console.log(values, "values");
+        setSignUpModal({
+            visible: true,
+            values: values,
+            submitProps: onSubmitProps,
+        });
     };
     const handleConfirmSignUpUser = (values, onSubmitProps) => {
         console.log(values, "values");
