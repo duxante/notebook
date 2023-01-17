@@ -27,8 +27,10 @@ const LoginWindow = () => {
         visible: false,
         severity: "",
         text: "",
-    })
+    });
+    
     const navigate = useNavigate();
+
     const handleLoginSubmit = async(values, onSubmitProps) => {
         const db = fire.firestore();
         const response = db.collection("registeredUsers");
@@ -38,23 +40,26 @@ const LoginWindow = () => {
             return registeredUserData;
         });
         console.log(registeredUsers, "registeredUsers");
-        if (values.email === registeredUsers[0].email && values.password === registeredUsers[0].password){
-            localStorage.setItem("userData", JSON.stringify({
-                "role": registeredUsers[0].role,
-                "firstName": registeredUsers[0].firstName
-            }));
-            onSubmitProps.resetForm();
-            navigate('/users');
-        } 
-        else (
-            setNotificationConfig({
-                visible: true,
-                severity: "error",
-                text: "Something went wrong, please check your credentials!",
-            })
-            
-        )
-    }
+
+        registeredUsers.some(user => {
+            if (user.email === values.email && user.password === values.password) {
+                localStorage.setItem("userData", JSON.stringify({
+                    "role": user.role,
+                    "firstName": user.firstName
+                }));    
+                onSubmitProps.resetForm();
+                navigate("/users");
+                return true;
+            } else {
+                setNotificationConfig({
+                    visible: true,
+                    severity: "error",
+                    text: "Something went wrong, please check your credentials!",
+                });
+                return false;
+            };
+        });    
+    };
 
     return(
         <>
