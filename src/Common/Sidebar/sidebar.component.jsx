@@ -5,25 +5,28 @@ const Sidebar = () => {
 
     const navigate = useNavigate();
     const role = localStorage.getItem("role");
+    const notebookOwner = localStorage.getItem("firstName");
 
     return(
         <div className="sidebar">
-            
                 <div className="personalNotebook">
                     <div className="sidebarButton">    
-                    <img src="https://freepikpsd.com/file/2019/10/icone-notebook-png-5-Transparent-Images.png"/>
-                    <p>Personal notebook</p>
+                    <img src="https://i.pinimg.com/originals/c2/46/eb/c246ebe54278ac230d528e8bd64d6109.png"/>
+                    <p>{notebookOwner} notebook</p>
+
                     </div>
                 </div>
                 <div className="mobile-sidebar">    
+                {role === "superAdmin" &&
+                <>
                     <div className="shortcuts">
                     <div onClick={() => navigate('/users')} className="sidebarButton">
                         <img src="https://www.iconpacks.net/icons/1/free-users-icon-267-thumb.png"/>
                         <h2>Users</h2>
                     </div>    
                     </div>
-                    {role === "superAdmin" &&
-                    <>
+                    {/* {role === "superAdmin" &&
+                    <> */}
                     <div className="shortcuts">
                     <div onClick={() => navigate('/addNewUser')} className="sidebarButton">
                         <img src="https://www.freeiconspng.com/thumbs/account-icon/account-icon-17.png"/>
@@ -36,8 +39,8 @@ const Sidebar = () => {
                         <h2>Add New Task</h2>
                         </div>
                     </div>
-                    </>
-                    }
+                    {/* </>
+                    } */}
                     <div className="shortcuts">
                         <div onClick={() => navigate('/tasks')} className="sidebarButton">
                         <img src="https://icons-for-free.com/download-icon-description+outline+problem+task+tasks+taskstroke+icon-1320168114572144822_256.ico"/>
@@ -56,6 +59,8 @@ const Sidebar = () => {
                         <h2>Deleted Users</h2>
                         </div>
                     </div>
+                    </>
+                }
                     <div className="shortcuts">
                         <div onClick={() => navigate('/notebook')} className="sidebarButton">
                         <img link to='/' src="https://icons-for-free.com/download-icon-bx+log+out-1325051892133132707_256.ico"/>
