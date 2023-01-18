@@ -9,7 +9,8 @@ const Sidebar = () => {
     const logout = () => {
         navigate('/notebook');
         localStorage.clear();
-    }
+        console.clear()
+    };
 
     return(
         <div className="sidebar">
