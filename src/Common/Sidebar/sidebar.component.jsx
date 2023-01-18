@@ -17,7 +17,6 @@ const Sidebar = () => {
                     </div>
                 </div>
                 <div className="mobile-sidebar">    
-                {notebookOwner.role === "superAdmin" &&
                 <>
                     <div className="shortcuts">
                     <div onClick={() => navigate('/users')} className="sidebarButton">
@@ -25,8 +24,8 @@ const Sidebar = () => {
                         <h2>Users</h2>
                     </div>    
                     </div>
-                    {/* {role === "superAdmin" &&
-                    <> */}
+                    {notebookOwner.role === "superAdmin" &&
+                    <>
                     <div className="shortcuts">
                     <div onClick={() => navigate('/addNewUser')} className="sidebarButton">
                         <img src="https://www.freeiconspng.com/thumbs/account-icon/account-icon-17.png"/>
@@ -39,8 +38,8 @@ const Sidebar = () => {
                         <h2>Add New Task</h2>
                         </div>
                     </div>
-                    {/* </>
-                    } */}
+                    </>
+                    }
                     <div className="shortcuts">
                         <div onClick={() => navigate('/tasks')} className="sidebarButton">
                         <img src="https://icons-for-free.com/download-icon-description+outline+problem+task+tasks+taskstroke+icon-1320168114572144822_256.ico"/>
@@ -60,7 +59,6 @@ const Sidebar = () => {
                         </div>
                     </div>
                     </>
-                }
                     <div className="shortcuts">
                         <div onClick={() => navigate('/notebook')} className="sidebarButton">
                         <img link to='/' src="https://icons-for-free.com/download-icon-bx+log+out-1325051892133132707_256.ico"/>
