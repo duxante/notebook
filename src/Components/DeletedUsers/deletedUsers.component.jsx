@@ -19,6 +19,8 @@ const DeletedUsers = () => {
         severity: "",
         text: "",
     })
+  
+    const notebookOwner = JSON.parse(localStorage.getItem("userData"));
 
     const fetchDeletedUsers = async () => {
         setLoader(true);
@@ -108,7 +110,10 @@ const DeletedUsers = () => {
                                 <p key={Math.random()} className="deletedUserParagraph">{deletedUser.position}</p>
                                 <p key={Math.random()} className="deletedUserParagraph">{deletedUser.status}</p>
                                 <p key={Math.random()} className="deletedUserParagraph">{deletedUser.employed}</p>
-                                <button key={Math.random()} onClick={() => handleOpenReactivateConfirm(deletedUser)}>Reactivate</button>
+                                {notebookOwner.role === "superAdmin" ? 
+                      <button key={Math.random()} onClick={() => handleOpenReactivateConfirm(deletedUser)}>Reactivate</button> : 
+                      <button disabled="disabled">Reactivate user</button>
+                    }
                             </div>
                             )
                         })}
