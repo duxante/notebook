@@ -39,7 +39,6 @@ const LoginWindow = () => {
             const registeredUserData = user.data();
             return registeredUserData;
         });
-        console.log(registeredUsers, "registeredUsers");
 
         registeredUsers.some(user => {
             if (user.email === values.email && user.password === values.password) {

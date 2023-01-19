@@ -66,7 +66,6 @@ const SignUp = () => {
         
     };
     const handleConfirmSignUpUser = (values, onSubmitProps) => {
-        console.log(values, "values");
         setSignUpModal({
             visible: true,
             values: values,
