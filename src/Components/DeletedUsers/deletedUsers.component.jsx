@@ -111,9 +111,9 @@ const DeletedUsers = () => {
                                 <p key={Math.random()} className="deletedUserParagraph">{deletedUser.status}</p>
                                 <p key={Math.random()} className="deletedUserParagraph">{deletedUser.employed}</p>
                                 {notebookOwner.role === "superAdmin" ? 
-                      <button key={Math.random()} onClick={() => handleOpenReactivateConfirm(deletedUser)}>Reactivate</button> : 
-                      <button disabled="disabled">Reactivate user</button>
-                    }
+                                <button key={Math.random()} onClick={() => handleOpenReactivateConfirm(deletedUser)}>Reactivate</button> : 
+                                <button disabled>Reactivate user</button>
+                                }
                             </div>
                             )
                         })}
