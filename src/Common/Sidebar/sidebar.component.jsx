@@ -5,7 +5,6 @@ const Sidebar = () => {
 
     const navigate = useNavigate();
     const notebookOwner = JSON.parse(localStorage.getItem("userData"));
-    console.log (notebookOwner, "notebookOwner");
     const logout = () => {
         navigate('/');
         localStorage.clear();
