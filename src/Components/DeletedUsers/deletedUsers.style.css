@@ -77,8 +77,7 @@
     margin: 5px;
 }
  
-.button:disabled,
-    button[disabled]{
+button:disabled {
     background-color: #cccccc;
     color: #666666;
     max-width: 185px;
@@ -92,4 +91,5 @@
     border: none;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     padding: 5px 0px;
+    pointer-events: none;
 }
