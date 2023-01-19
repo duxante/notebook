@@ -25,6 +25,7 @@ const FinishedTasks = () => {
         severity: "",
         text: "",
     });
+    const notebookOwner = JSON.parse(localStorage.getItem("userData"));
 
     const fetchFinishedTasks = async() => {
         const db = fire.firestore();
@@ -68,7 +69,9 @@ const FinishedTasks = () => {
                     <p className="finishedTaskDescription">{description}</p>
                 </div>
                 <Button onClick={() => handleViewFinishedTask(completeTask)} buttonText="View Task" customClassName="customStyle" />
+                {notebookOwner.role === "superAdmin" &&
                 <Button onClick={() => handleOpenRestoreTaskConfirm(completeTask)} buttonText="Restore Task" customClassName="restoreFinishedTaskButtonStyle" />
+                }
             </div>
         )
     }

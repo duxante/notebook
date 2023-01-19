@@ -27,6 +27,7 @@ const Users = () => {
     status:"",
     employed:"",
   })
+  const notebookOwner = JSON.parse(localStorage.getItem("userData"));
 
     const fetchUsers = async() => {
         const db = fire.firestore();
@@ -126,8 +127,12 @@ const Users = () => {
                     <p key={Math.random()} className="userParagraph">{user.position}</p>
                     <p key={Math.random()} className="userParagraph">{user.employed}</p>
                     <p key={Math.random()} className="userParagraph">{user.status}</p>
-                    <button key={Math.random()} onClick={() => handleOpenDeleteConfirm(user)}>Delete</button>
+                    {notebookOwner.role === "superAdmin" ? 
+                      <button key={Math.random()} onClick={() => handleOpenDeleteConfirm(user)}>Delete</button> : 
+                      <button disabled="disabled">Delete user</button>
+                    }
                     </div>
+                    
                   )
                 })}
             </Dashboard>
