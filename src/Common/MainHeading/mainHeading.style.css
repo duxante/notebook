@@ -1,10 +1,11 @@
 .mainHeadingTitle {
-    width: 95%;
+    width: 100%;
     color: white;
     background-color: #34495e;
     display: flex;
     justify-content: center;
     border-radius: 10px;
-    margin-top: -35px;
     box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }

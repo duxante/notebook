@@ -8,6 +8,7 @@
     gap: 20px;
     box-shadow: rgb(0 0 0 / 30%) 0px 19px 38px, rgb(0 0 0 / 22%) 0px 15px 12px;
     background-color: #34495e;
+    padding-bottom: 10px;
 }
   
 .sidebar img {
@@ -46,7 +47,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    padding: 10px, 0;
+    padding: 10px 0;
 }
 
 .shortcuts:hover {
@@ -87,8 +88,14 @@
     justify-content: center;
     border-radius: 5px;
     background-color: #e85d04;
-    height: 30px;
     align-items: center;
+    margin: 0px auto;
+    padding: 15px 0;
+}
+
+.developedByDux h4 {
+    padding: 0;
+    margin: 0;
 }
   
 .sidebarButton {
