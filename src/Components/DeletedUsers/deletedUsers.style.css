@@ -61,6 +61,12 @@
     color: white;
 }
 
+.deletedUsersTable {
+    width: 100%;
+    overflow: auto;
+    margin: 0px 0px 1%;
+}
+
 .deletedUserParagraph {
     display: flex;
     align-items: center;

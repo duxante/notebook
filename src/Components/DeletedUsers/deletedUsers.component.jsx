@@ -6,10 +6,12 @@ import fire from "../../Utils/firebase.config";
 import Notification from "../../Common/NotificationFolder/notification.component";
 import HolderCentralniDio from "../../Common/HolderCentralniDio/holderCentralniDio.component";
 import TransitionsModal from "../../Common/PopUp/popUp.component";
-
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 const DeletedUsers = () => {
     const [deletedUsers, setDeletedUsers] = useState([]);
+    const [loader, setLoader] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [userForReactivate, setUserForReactivate] = useState(null);
     const [notificationConfig, setNotificationConfig] = useState({
@@ -17,9 +19,9 @@ const DeletedUsers = () => {
         severity: "",
         text: "",
     })
-  
 
     const fetchDeletedUsers = async () => {
+        setLoader(true);
         const db = fire.firestore();
         const response = db.collection("deletedUsers");
         const data = await response.get();
@@ -35,6 +37,7 @@ const DeletedUsers = () => {
             return singleDeletedUser;
         });
         setDeletedUsers([...newDeletedUsers]);
+        setLoader(false);
       };
 
     useEffect(() => {
@@ -76,10 +79,10 @@ const DeletedUsers = () => {
         }
         
         <TransitionsModal 
-        title="Do you want to reactivate user?"
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        onClick={handleReactivateUser}
+            title="Do you want to reactivate user?"
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            onClick={handleReactivateUser}
         />
 
         <HolderCentralniDio>
@@ -92,17 +95,25 @@ const DeletedUsers = () => {
                     <h4>STATUS</h4>
                     <h4>ACTION</h4>
                 </div>
-                {deletedUsers.map((deletedUser, index) => {
-                    return(
-                    <div key={index} className="deletedUser">
-                        <p key={Math.random()} className="deletedUserParagraph">{deletedUser.name}</p>
-                        <p key={Math.random()} className="deletedUserParagraph">{deletedUser.position}</p>
-                        <p key={Math.random()} className="deletedUserParagraph">{deletedUser.status}</p>
-                        <p key={Math.random()} className="deletedUserParagraph">{deletedUser.employed}</p>
-                        <button key={Math.random()} onClick={() => handleOpenReactivateConfirm(deletedUser)}>Reactivate</button>
-                    </div>
-                    )
-                })} 
+                {loader ?
+                    <Box sx={{ display: 'flex', height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' }}>  
+                        <CircularProgress />
+                    </Box>
+                    :
+                    <div className="deletedUsersTable">
+                    {deletedUsers.map((deletedUser, index) => {
+                            return(
+                            <div key={index} className="deletedUser">
+                                <p key={Math.random()} className="deletedUserParagraph">{deletedUser.name}</p>
+                                <p key={Math.random()} className="deletedUserParagraph">{deletedUser.position}</p>
+                                <p key={Math.random()} className="deletedUserParagraph">{deletedUser.status}</p>
+                                <p key={Math.random()} className="deletedUserParagraph">{deletedUser.employed}</p>
+                                <button key={Math.random()} onClick={() => handleOpenReactivateConfirm(deletedUser)}>Reactivate</button>
+                            </div>
+                            )
+                        })}
+                    </div> 
+                }
             </Dashboard>
         </HolderCentralniDio>
         </>

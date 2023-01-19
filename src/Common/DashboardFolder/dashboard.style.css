@@ -1,15 +1,21 @@
 .globalDashboard {
-    width: 80%;
+    width: 100%;
+    display: flex;
+} 
+
+.tablesHolder {
+    width: 98%;
+    height: 100%;
+    max-height: 95vh;
+    margin: 0px auto;
     display: flex;
     flex-direction: column;
+    align-self: center;
+    align-items: center;
     background-color: #dce2e7e6;
     border-radius: 10px;
     box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
-    align-items: center;
-    height: 85vh;
-    align-self: center;
-    margin: 0px auto;
-} 
+}
 
 @media screen and (min-width: 1920px) {
     .globalDashboard{

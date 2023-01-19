@@ -4,8 +4,10 @@ import "./dashboard.style.css";
 const Dashboard = ({children, mainHeadingTitle}) => {
     return(
         <div className="globalDashboard">
-            <MainHeading mainHeadingTitle={mainHeadingTitle} />
-            {children}
+            <div className="tablesHolder">
+                <MainHeading mainHeadingTitle={mainHeadingTitle} />
+                {children}
+            </div>
         </div>
     )
 }
